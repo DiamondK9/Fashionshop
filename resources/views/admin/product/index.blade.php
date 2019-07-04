@@ -72,12 +72,12 @@
 					<a class="btn btn-success" href="{{route("product.edit", $product->product_id)}}">Chỉnh sửa</a>
 				</td>
 				<td>
-					<button type="button" class="btn btn-danger deleteproduct" data-url="{{route('product.delete', $product->product_id)}}">Xóa</button>
+					<button type="button" class="btn btn-danger deleteProduct" data-url="{{route('product.delete', $product->product_id)}}">Xóa</button>
 				</td>
 			</tr>
 		@empty
 			<tr>
-				<td colspan="7">Không có dữ liệu</td>
+				<td colspan="10">Không có dữ liệu</td>
 			</tr>
 		@endforelse
 	</table>
@@ -88,7 +88,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.deleteproduct').click(function() {
+			$('.deleteProduct').click(function() {
 				if(!confirm("Bạn có chắc chắn xóa?")) {
 					return false;
 				}

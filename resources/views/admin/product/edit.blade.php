@@ -20,37 +20,49 @@
 
 	<div class="form-group">
 		<label>Tên</label>
-		<input type="text" value="{{$product->name}}" name="name" class="form-control">
+		<input type="text" value="{{$product->product_name}}" name="product_name" class="form-control">
 	</div>
+
 	<div class="form-group">
-		<label>Hình ảnh</label>
-		<input type="file" name="product_image" class="form-control">
-		<img src="{{asset('storage/product/' . $product->product_image)}}" width="150" alt="" />
+		<label>Mã Sản Phẩm</label>
+		<input type="text" value="{{$product->product_code}}" name="product_code" class="form-control">
 	</div>
+
 	<div class="form-group">
-		<label>Số lượng</label>
-		<input type="number" value="{{$product->product_quantity}}" name="product_quantity" class="form-control">
-	</div>
-	<div class="form-group">
-		<label>Giá</label>
-		<input type="number" value="{{$product->product_price}}" name="product_price" class="form-control">
-	</div>
-	<div class="form-group">
-		<label>Loại</label>
+		<label>Loại Sản Phẩm</label>
 		<select name="product_type_id">
 			@foreach($product_types as $product_type)
 				<option {{$product_type->product_type_id == $product->product_type_id ? "selected" : ''}} value="{{$product_type->product_type_id}}">{{$product_type->name}}</option>
 			@endforeach
 		</select>
 	</div>
+	
 	<div class="form-group">
-		<label>Nhà sản xuất</label>
+		<label>Nhà Cung cấp</label>
 		<select name="producer_id">
 			@foreach($producers as $producer)
 				<option {{$producer->producer_id == $product->producer_id ? "selected" : ''}} value="{{$producer->producer_id}}">{{$producer->name}}</option>
 			@endforeach
 		</select>
 	</div>
+
+	<div class="form-group">
+		<label>Hình ảnh</label>
+		<input type="file" name="product_image" class="form-control">
+		<img src="{{asset('storage/product/' . $product->product_image)}}" width="150" alt="" />
+	</div>
+
+	<div class="form-group">
+		<label>Số lượng</label>
+		<input type="number" value="{{$product->product_quantity}}" name="product_quantity" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label>Giá</label>
+		<input type="number" value="{{$product->product_price}}" name="product_price" class="form-control">
+	</div>
+
+
 	<button class="btn btn-success" type="submit">Tạo mới</button>
 	<button class="btn btn-warning" type="reset">Nhập lại</button>
 	<a href="{{route('product.index')}}" class="btn btn-default">Trở lại</a>

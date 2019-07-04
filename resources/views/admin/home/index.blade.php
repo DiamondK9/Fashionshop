@@ -1,4 +1,4 @@
 @extends('admin.index')
 @section('content')
-  Chao mung toi trang quan tri admin
+  Chào mừng bạn tới Trang Quản trị Admin của Fashionshop
 @endsection

@@ -17,7 +17,7 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->paginate(2);
+        $products = Product::query()->paginate(15);
 
         return view('admin.product.index', ['products' => $products]);
     }
@@ -112,9 +112,9 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($product_id);
 
         $rules = [
             'product_name' => 'required|max:191',
@@ -141,9 +141,9 @@ class productController extends Controller
 
         $check = $product->save();
         if ($check) {
-            return redirect('admin/product')->with('success', "Cập nhật điện thoại " . $product->name . " thành công");
+            return redirect('admin/product')->with('success', "Cập nhật điện thoại " . $product->product_name . " thành công");
         }
-        return redirect('admin/product/' . $product->id . "/edit")->with('error', "Cập nhật thất bại");
+        return redirect('admin/product/' . $product->product_id . "/edit")->with('error', "Cập nhật thất bại");
     }
 
     /**
@@ -154,7 +154,7 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        $product = product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
         if($product->delete()) {
             return response()->json([
