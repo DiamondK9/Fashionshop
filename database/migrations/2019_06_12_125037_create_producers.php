@@ -18,8 +18,8 @@ class CreateProducers extends Migration
             $table->string('producer_name');
             $table->string('producer_image')->nullable();
             $table->string('producer_phone',20)->nullable();
-            $table->string('producer_email');
-            $table->integer('active')->default(0)->nullable();
+            $table->string('producer_email')->default(0)->nullable();
+            $table->integer('active')->default(1)->nullable();
             $table->timestamps();
         });
     }

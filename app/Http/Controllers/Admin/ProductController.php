@@ -48,6 +48,7 @@ class productController extends Controller
         // dd($request->all());  -> su dung de kiem tra thong tin duoc gui len  
         $rules = [
             'product_name' => 'required|max:191',
+            // 'producer_name' => 'option',
             'product_price' => 'numeric',
             'product_quantity' => 'numeric'
         ];
@@ -65,7 +66,7 @@ class productController extends Controller
 
         $product = new Product;
         $product->fill($request->all());
-
+        
         $product->product_image = $product_image;
 
         $check = $product->save();
@@ -153,9 +154,9 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product_id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($product_id);
 
         if($product->delete()) {
             return response()->json([

@@ -104,7 +104,7 @@
                             <a href="{{route('product.index')}}"><i class="fa fa-book"></i>Quản lý sản phẩm </a>
                         </li>
                         <li>
-                            <a href="?sk=producer"><i class="fa fa-th"></i>Nhà cung cấp </a>
+                            <a href="{{route('producer.index')}}"><i class="fa fa-th"></i>Nhà cung cấp </a>
                         </li>
                         <li>
                             <a href="?sk=producttype"><i class="fa fa-th"></i>Phân Loại sản phẩm</a>

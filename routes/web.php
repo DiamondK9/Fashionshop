@@ -32,4 +32,17 @@ Route::prefix('admin')->group(function() {
 
 		Route::delete('/{product}', '\App\Http\Controllers\Admin\ProductController@destroy')->name('product.delete');
 	});
+
+	Route::prefix("producer")->group(function() {
+		Route::get('/', '\App\Http\Controllers\Admin\ProducerController@index')->name('producer.index');
+
+		Route::get("/create", '\App\Http\Controllers\Admin\ProducerController@create')->name('producer.create');
+		Route::post('', '\App\Http\Controllers\Admin\ProducerController@store')->name('producer.store');
+
+		Route::get('/{producer}/edit', '\App\Http\Controllers\Admin\ProducerController@edit')->name('producer.edit');
+
+		Route::put('/{producer}', '\App\Http\Controllers\Admin\ProducerController@update')->name('producer.update');
+
+		Route::delete('/{producer}', '\App\Http\Controllers\Admin\ProducerController@destroy')->name('producer.delete');
+	});
 });

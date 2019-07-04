@@ -60,16 +60,16 @@
 			<tr>
 				<td>{{$product->product_id}}</td>
 
-				<td{{isset($product->product_type) ? $product->product_type->product_name : ""}}></td>
+				<td{{isset($product->product_type) ? $product->product_type->product_type_name : ""}}></td>
 
-				<td>{{isset($product->producer) ? $product->producer->product_name : ""}}</td>
+				<td>{{-- {{isset($producer->producer_id) ? $producer->producer_id->producer_name : ""}} --}}{{$product->producer_id}}</td>
 
 				<td>{{$product->product_code }}</td>
 
 				<td>{{$product->product_name}}</td>
 
 				<td>
-					<img src="{{asset('storage/product/' . $product->product_image)}}" width="150" alt="" />
+					<img src="{{asset('../storage/app/public/product/' . $product->product_image)}}" width="150" alt="" />
 				</td>
 
 				<td>{{number_format($product->product_price)}}</td>

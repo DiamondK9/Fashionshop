@@ -26,7 +26,7 @@ class CreateProducts extends Migration
                 //     ->on('product_types')
                 //     ->ondelete('cascade');
 
-            $table->bigInteger('producer_id')->unsigned()->nullable();
+            $table->string('producer_id')->default(0)->nullable();
                 // $table->foreign('producer_id')
                 //     ->references('producer_id')
                 //     ->on('producers')
