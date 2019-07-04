@@ -55,14 +55,15 @@ class productController extends Controller
 
         $product_image = '';
 
-        if ($request->hasFile('product_image')) {
+        if ($request->hasFile('product_image')) 
+        {
             $file = $request->file('product_image');
             $product_image = time() . "-" . $file->getClientOriginalName();
 
             $file->storeAs("public/product", $product_image);
         }
 
-        $product = new product;
+        $product = new Product;
         $product->fill($request->all());
 
         $product->product_image = $product_image;

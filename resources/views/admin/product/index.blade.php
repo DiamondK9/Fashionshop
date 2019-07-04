@@ -59,18 +59,29 @@
 		@forelse($products as $product)
 			<tr>
 				<td>{{$product->product_id}}</td>
+
+				<td{{isset($product->product_type) ? $product->product_type->product_name : ""}}></td>
+
+				<td>{{isset($product->producer) ? $product->producer->product_name : ""}}</td>
+
+				<td>{{$product->product_code }}</td>
+
 				<td>{{$product->product_name}}</td>
+
 				<td>
-					<img src="{{asset('storage/product/' . $product->product_image)}}" wproduct_idth="150" alt="" />
+					<img src="{{asset('storage/product/' . $product->product_image)}}" width="150" alt="" />
 				</td>
+
 				<td>{{number_format($product->product_price)}}</td>
+
 				<td>{{$product->product_quantity}}</td>
 				
-				<td>{{isset($product->producer) ? $product->producer->product_name : ""}}</td>
-				<td{{isset($product->product_type) ? $product->product_type->product_name : ""}}></td>
+				
+				
 				<td>
 					<a class="btn btn-success" href="{{route("product.edit", $product->product_id)}}">Chỉnh sửa</a>
 				</td>
+
 				<td>
 					<button type="button" class="btn btn-danger deleteProduct" data-url="{{route('product.delete', $product->product_id)}}">Xóa</button>
 				</td>
