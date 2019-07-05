@@ -20,17 +20,16 @@ class CreateProducts extends Migration
 
             //loại product_type_id và producer_id cần phải giống với primary key ở hai bảng product_types và producers là BigINT cùng Unsigned
             //Khai báo tạo cột trước rồi mới khai báo tạo foreign key
-            $table->bigInteger('product_type_id')->unsigned()->nullable();
+            $table->integer('product_type_id')->unsigned()->nullable();
                 // $table->foreign('product_type_id')
                 //     ->references('product_type_id')
                 //     ->on('product_types')
                 //     ->ondelete('cascade');
 
-            $table->string('producer_id')->default(0)->nullable();
-                // $table->foreign('producer_id')
-                //     ->references('producer_id')
-                //     ->on('producers')
-                //     ->ondelete('cascade');
+            $table->integer('producer_id')->unsigned();
+                $table->foreign('producer_id')
+                    ->references('producer_id')->on('producers')
+                    ->onDelete('cascade');
             //thứ tự tạo các cột không quan trọng, ở đây mình chỉ muốn để các cột ID và primary, foreign key ở cùng nhau thôi.
 
             $table->string('product_code')->default(0)->nullable();  
