@@ -13,16 +13,16 @@ class CreateProductTypes extends Migration
      */
     public function up()
     {
-        Schema::create('product_types', function (Blueprint $table) {
-            $table->bigIncrements('product_type_id');
-            $table->string('product_type_name');
+        Schema::create('producttypes', function (Blueprint $table) {
+            $table->bigIncrements('producttype_id');
+            $table->string('producttype_name');
 
-            $table->bigInteger('product_type_sub_id')->unsigned()->nullable();
+            $table->bigInteger('producttype_sub_id')->unsigned()->nullable();
                 // $table->foreign('product_type_sub_id')
                 // ->references('product_type_id')
                 // ->on('product_type_subs');
 
-            $table->tinyInteger("active")->default(0)->nullable();
+            $table->tinyInteger("active")->default(1)->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateProductTypes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_types');
+        Schema::dropIfExists('producttypes');
     }
 }

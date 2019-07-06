@@ -41,7 +41,7 @@
 		<label>Nhà Cung cấp</label>
 		<select name="producer_id">
 			@foreach($producers as $producer)
-				<option {{$producer->producer_id == $product->producer_id ? "selected" : ''}} value="{{$producer->producer_id}}">{{$producer->name}}</option>
+				<option {{$producer->producer_id == $product->producer_id ? "selected" : ''}} value="{{$producer->producer_id}}">{{$producer->producer_name}}</option>
 			@endforeach
 		</select>
 	</div>
