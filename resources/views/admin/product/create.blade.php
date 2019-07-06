@@ -28,9 +28,9 @@
 
 	<div class="form-group">
 		<label>Loại Sản Phẩm</label>
-		<select name="product_type">
-			@foreach($product_types as $product_type)
-				<option value="{{$product_type->product_type_id}}">{{$product_type->product_type_name}}</option>
+		<select name="producttype_id">
+			@foreach($producttypes as $producttype)
+				<option value="{{$producttype->producttype_id}}">{{$producttype->producttype_name}}</option>
 			@endforeach
 		</select>
 	</div>
