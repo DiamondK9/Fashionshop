@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Producer;
 use App\Models\ProductType;
 
-class productController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,10 +30,10 @@ class productController extends Controller
     public function create()
     {
         $producers = Producer::whereActive(1)->get();
-        $product_types = ProductType::where("active", 1)->get();
+        $producttypes = ProductType::where("active", 1)->get();
         return view('admin.product.create', [
             'producers' => $producers,
-            'product_types' => $product_types
+            'producttypes' => $producttypes
         ]);
     }
 
@@ -99,11 +99,11 @@ class productController extends Controller
         $product = Product::findOrFail($product_id);
 
         $producers = Producer::whereActive(1)->get();
-        $product_types = ProductType::whereActive(1)->get();
+        $producttypes = ProductType::whereActive(1)->get();
         return view('admin.product.edit', [
             'product' => $product, 
             'producers' => $producers,
-            'product_types' => $product_types
+            'producttypes' => $producttypes
         ]);
     }
 

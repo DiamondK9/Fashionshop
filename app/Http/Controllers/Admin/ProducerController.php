@@ -30,10 +30,10 @@ class ProducerController extends Controller
     public function create()
     {
         $producers = Producer::whereActive(1)->get();
-        $product_types = ProductType::where("active", 1)->get();
+        $producttypes = ProductType::where("active", 1)->get();
         return view('admin.producer.create', [
             'producers' => $producers,
-            'product_types' => $product_types
+            'producttypes' => $producttypes
         ]);
     }
 
@@ -99,11 +99,11 @@ class ProducerController extends Controller
         $producer = Producer::findOrFail($producer_id);
 
         $producers = Producer::whereActive(1)->get();
-        $product_types = ProductType::whereActive(1)->get();
+        $producttypes = ProductType::whereActive(1)->get();
         return view('admin.producer.edit', [
             'producer' => $producer, 
             // 'producers' => $producers,
-            // 'product_types' => $product_types
+            // 'producttypes' => $producttypes
         ]);
     }
 
