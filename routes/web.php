@@ -46,16 +46,16 @@ Route::prefix('admin')->group(function() {
 		Route::delete('/{producer}', '\App\Http\Controllers\Admin\ProducerController@destroy')->name('producer.delete');
 	});
 
-	Route::prefix("producttype")->group(function() {
-		Route::get('/', '\App\Http\Controllers\Admin\ProductTypeController@index')->name('producttype.index');
+	Route::prefix("product_type")->group(function() {
+		Route::get('/', '\App\Http\Controllers\Admin\ProductTypeController@index')->name('product_type.index');
 
-		Route::get("/create", '\App\Http\Controllers\Admin\ProductTypeController@create')->name('producttype.create');
-		Route::post('', '\App\Http\Controllers\Admin\ProductTypeController@store')->name('producttype.store');
+		Route::get("/create", '\App\Http\Controllers\Admin\ProductTypeController@create')->name('product_type.create');
+		Route::post('', '\App\Http\Controllers\Admin\ProductTypeController@store')->name('product_type.store');
 
-		Route::get('/{producttype}/edit', '\App\Http\Controllers\Admin\ProductTypeController@edit')->name('producttype.edit');
+		Route::get('/{product_type}/edit', '\App\Http\Controllers\Admin\ProductTypeController@edit')->name('product_type.edit');
 
-		Route::put('/{producttype}', '\App\Http\Controllers\Admin\ProductTypeController@update')->name('producttype.update');
+		Route::put('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@update')->name('product_type.update');
 
-		Route::delete('/{producttype}', '\App\Http\Controllers\Admin\ProductTypeController@destroy')->name('producttype.delete');
+		Route::delete('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@destroy')->name('product_type.delete');
 	});
 });

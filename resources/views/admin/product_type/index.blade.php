@@ -1,9 +1,9 @@
 @extends("admin.index")
 @section('content')
-	<a class="btn btn-primary" href="{{url('admin/producttype/create')}}">Tạo mới Loại Sản Phẩm</a>
+	<a class="btn btn-primary" href="{{url('admin/product_type/create')}}">Tạo mới Loại Sản Phẩm</a>
 	<table class="table table-striped table-hover">
 		<tr>
-			<th>Producttype ID</th>
+			<th>product_type ID</th>
 			<th>Tên loại Sản Phẩm</th>
 			<th>Hình ảnh đại diện</th>
 			<th>Phân khúc sản Phẩm</th>
@@ -11,27 +11,27 @@
 			<th>Xóa</th>
 		</tr>
 
-		@forelse($producttypes as $producttype)
+		@forelse($product_types as $product_type)
 			<tr>
-				<td>{{$producttype->producttype_id}}</td>
+				<td>{{$product_type->product_type_id}}</td>
 
-				<td>{{$producttype->producttype_name}}</td>
+				<td>{{$product_type->product_type_name}}</td>
 
 				<td>
-					<img src="{{asset('../storage/app/public/producttype/' . $producttype->producttype_image)}}" width="150" alt="" />
+					<img src="{{asset('../storage/app/public/product_type/' . $product_type->product_type_image)}}" width="150" alt="" />
 				</td>
 
 
-				<td>{{isset($producttype->producttype_sub) ? $producttype->producttype_sub->producttype_sub_name :''}}</td>
+				<td>{{isset($product_type->product_type_sub) ? $product_type->product_type_sub->product_type_sub_name :''}}</td>
 				
 				
 				
 				<td>
-					<a class="btn btn-success" href="{{route("producttype.edit", $producttype->producttype_id)}}">Chỉnh sửa</a>
+					<a class="btn btn-success" href="{{route("product_type.edit", $product_type->product_type_id)}}">Chỉnh sửa</a>
 				</td>
 
 				<td>
-					<button type="button" class="btn btn-danger deleteproducttype" data-url="{{route('producttype.delete', $producttype->producttype_id)}}">Xóa</button>
+					<button type="button" class="btn btn-danger deleteproduct_type" data-url="{{route('product_type.delete', $product_type->product_type_id)}}">Xóa</button>
 				</td>
 			</tr>
 		@empty
@@ -42,12 +42,12 @@
 	</table>
 	
 	<div class="col-md-12 text-center">
-		{{$producttypes->links()}}		
+		{{$product_types->links()}}		
 	</div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.deleteproducttype').click(function() {
+			$('.deleteproduct_type').click(function() {
 				if(!confirm("Bạn có chắc chắn xóa?")) {
 					return false;
 				}

@@ -107,7 +107,7 @@
                             <a href="{{route('producer.index')}}"><i class="fa fa-th"></i>Nhà cung cấp </a>
                         </li>
                         <li>
-                            <a href="{{route('producttype.index')}}"><i class="fa fa-th"></i>Phân Loại sản phẩm</a>
+                            <a href="{{route('product_type.index')}}"><i class="fa fa-th"></i>Phân Loại sản phẩm</a>
                         </li>
                         <!-- <li>
                             <a href="?sk=tacgia"><i class="fa fa-th"></i>Tác giả</a>

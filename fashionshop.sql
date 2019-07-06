@@ -60,9 +60,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_06_12_124858_create_admins', 1),
 (4, '2019_06_12_124923_create_products', 1),
-(5, '2019_06_12_124950_create_product_types', 1),
+(5, '2019_06_12_124950_create_producttypes', 1),
 (6, '2019_06_12_125037_create_producers', 1),
-(7, '2019_06_21_041804_create_product_type_subs', 1);
+(7, '2019_06_21_041804_create_producttype_subs', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +101,7 @@ CREATE TABLE `producers` (
 
 CREATE TABLE `products` (
   `product_id` bigint(20) UNSIGNED NOT NULL,
-  `product_type_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `producttype_id` bigint(20) UNSIGNED DEFAULT NULL,
   `producer_id` bigint(20) UNSIGNED DEFAULT NULL,
   `product_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -115,13 +115,13 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_types`
+-- Table structure for table `producttypes`
 --
 
-CREATE TABLE `product_types` (
-  `product_type_id` bigint(20) UNSIGNED NOT NULL,
-  `product_type_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_type_sub_id` bigint(20) UNSIGNED DEFAULT NULL,
+CREATE TABLE `producttypes` (
+  `producttype_id` bigint(20) UNSIGNED NOT NULL,
+  `producttype_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `producttype_sub_id` bigint(20) UNSIGNED DEFAULT NULL,
   `active` tinyint(4) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -130,13 +130,13 @@ CREATE TABLE `product_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_type_subs`
+-- Table structure for table `producttype_subs`
 --
 
-CREATE TABLE `product_type_subs` (
-  `product_type_sub_id` bigint(20) UNSIGNED NOT NULL,
-  `product_type_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `product_type_sub_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `producttype_subs` (
+  `producttype_sub_id` bigint(20) UNSIGNED NOT NULL,
+  `producttype_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `producttype_sub_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -194,16 +194,16 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
--- Indexes for table `product_types`
+-- Indexes for table `producttypes`
 --
-ALTER TABLE `product_types`
-  ADD PRIMARY KEY (`product_type_id`);
+ALTER TABLE `producttypes`
+  ADD PRIMARY KEY (`producttype_id`);
 
 --
--- Indexes for table `product_type_subs`
+-- Indexes for table `producttype_subs`
 --
-ALTER TABLE `product_type_subs`
-  ADD PRIMARY KEY (`product_type_sub_id`);
+ALTER TABLE `producttype_subs`
+  ADD PRIMARY KEY (`producttype_sub_id`);
 
 --
 -- Indexes for table `users`
@@ -241,16 +241,16 @@ ALTER TABLE `products`
   MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `product_types`
+-- AUTO_INCREMENT for table `producttypes`
 --
-ALTER TABLE `product_types`
-  MODIFY `product_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `producttypes`
+  MODIFY `producttype_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `product_type_subs`
+-- AUTO_INCREMENT for table `producttype_subs`
 --
-ALTER TABLE `product_type_subs`
-  MODIFY `product_type_sub_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `producttype_subs`
+  MODIFY `producttype_sub_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

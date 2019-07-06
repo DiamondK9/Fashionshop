@@ -14,23 +14,23 @@
 </div>
 @endif
 
-<form action="{{url('admin/producttype')}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+<form action="{{url('admin/product_type')}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	@csrf
 	<div class="form-group">
 		<label>Tên</label>
-		<input type="text" name="producttype_name" class="form-control">
-	</div>
-
-	<div class="form-group">
-		<label>Hình ảnh</label>
-		<input type="file" name="product_image" class="form-control">
+		<input type="text" name="product_type_name" class="form-control">
 	</div>
 
 	{{-- <div class="form-group">
+		<label>Hình ảnh</label>
+		<input type="file" name="product_type_image" class="form-control">
+	</div> --}}
+
+	{{-- <div class="form-group">
 		<label>Phân khúc Sản Phẩm</label>
-		<select name="producttype_sub">
-			@foreach($producttype_subs as $producttype_sub)
-				<option value="{{$producttype_sub->producttype_sub_id}}">{{$producttype_sub->producttype_sub_name}}</option>
+		<select name="product_type_sub">
+			@foreach($product_type_subs as $product_type_sub)
+				<option value="{{$product_type_sub->product_type_sub_id}}">{{$product_type_sub->product_type_sub_name}}</option>
 			@endforeach
 		</select>
 	</div> --}}

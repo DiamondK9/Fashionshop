@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Producttype;
-// use App\Models\ProductTypeSub;
+use App\Models\ProductType;
+// use App\Models\Product_TypeSub;
 
 class ProductTypeController extends Controller
 {
@@ -17,9 +17,9 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $producttypes = ProductType::query()->paginate(15);
+        $product_types = ProductType::query()->paginate(15);
 
-        return view('admin.producttype.index', ['producttypes' => $producttypes]);
+        return view('admin.product_type.index', ['product_types' => $product_types]);
     }
 
     /**
@@ -29,11 +29,11 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        $producttypes = ProductType::whereActive(1)->get();
-        // $producttype_subs = ProductTypeSub::where("active", 1)->get();
-        return view('admin.producttype.create', [
-            'producttypes' => $producttypes,
-            // 'producttypes' => $producttypes
+        $product_types = ProductType::whereActive(1)->get();
+        // $product_type_subs = ProductTypeSub::where("active", 1)->get();
+        return view('admin.product_type.create', [
+            'product_types' => $product_types,
+            // 'product_types' => $product_types
         ]);
     }
 
@@ -47,33 +47,33 @@ class ProductTypeController extends Controller
     {
         // dd($request->all());  -> su dung de kiem tra thong tin duoc gui len  
         $rules = [
-            'producttype_name' => 'required|max:191',
+            'product_type_name' => 'required|max:191',
             // 'product_code' => 'required|max:255',
-            // 'producttype_number' => 'numeric',
-            // 'producttype_email' => 'email'
+            // 'product_type_number' => 'numeric',
+            // 'product_type_email' => 'email'
         ];
         $request->validate($rules);
 
-        $producttype_image = '';
+        $product_type_image = '';
 
-        if ($request->hasFile('producttype_image')) 
+        if ($request->hasFile('product_type_image')) 
         {
-            $file = $request->file('producttype_image');
-            $producttype_image = time() . "-" . $file->getClientOriginalName();
+            $file = $request->file('product_type_image');
+            $product_type_image = time() . "-" . $file->getClientOriginalName();
 
-            $file->storeAs("public/producttype", $producttype_image);
+            $file->storeAs("public/product_type", $product_type_image);
         }
 
-        $producttype = new Producttype;
-        $producttype->fill($request->all());
+        $product_type = new ProductType;
+        $product_type->fill($request->all());
 
-        $producttype->producttype_image = $producttype_image;
+        $product_type->product_type_image = $product_type_image;
 
-        $check = $producttype->save();
+        $check = $product_type->save();
         if ($check) {
-            return redirect('admin/producttype')->with('success', "Tạo mới thành công");
+            return redirect('admin/product_type')->with('success', "Tạo mới thành công");
         }
-        return redirect('admin/producttype/create')->with('error', "Tạo mới thất bại");
+        return redirect('admin/product_type/create')->with('error', "Tạo mới thất bại");
     }
 
     /**
@@ -93,15 +93,15 @@ class ProductTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($producttype_id)
+    public function edit($product_type_id)
     {
-        $producttype = ProductType::findOrFail($producttype_id);
+        $product_type = ProductType::findOrFail($product_type_id);
 
-        $producttypes = ProductType::whereActive(1)->get();
-        // $product_types = ProductType::whereActive(1)->get();
-        return view('admin.producttype.edit', [
-            'producttype' => $producttype, 
-            // 'producttypes' => $producttypes,
+        $product_types = ProductType::whereActive(1)->get();
+        // $product_types = Product_Type::whereActive(1)->get();
+        return view('admin.product_type.edit', [
+            'product_type' => $product_type, 
+            // 'product_types' => $product_types,
             // 'product_types' => $product_types
         ]);
     }
@@ -113,38 +113,38 @@ class ProductTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $producttype_id)
+    public function update(Request $request, $product_type_id)
     {
-        $producttype = ProductType::findOrFail($producttype_id);
+        $product_type = ProductType::findOrFail($product_type_id);
 
         $rules = [
-            'producttype_name' => 'required|max:191',
-            'producttype_phone' => 'numeric',
-            'producttype_email' => 'email'
+            'product_type_name' => 'required|max:191',
+            'product_type_phone' => 'numeric',
+            'product_type_email' => 'email'
         ];
 
         $request->validate($rules);
 
-        $producttype->fill($request->all());
+        $product_type->fill($request->all());
 
-        if ($request->hasFile('producttype_image')) {
-            $old_producttype_image = $producttype->producttype_image; 
+        if ($request->hasFile('product_type_image')) {
+            $old_product_type_image = $product_type->product_type_image; 
 
-            $file = $request->file('producttype_image');
-            $producttype_image = time() . "-" . $file->getClientOriginalName();
-            $file->storeAs('public/producttype', $producttype_image);
-            $producttype->producttype_image = $producttype_image;
+            $file = $request->file('product_type_image');
+            $product_type_image = time() . "-" . $file->getClientOriginalName();
+            $file->storeAs('public/product_type', $product_type_image);
+            $product_type->product_type_image = $product_type_image;
 
-            @unlink(public_path('storage/producttype/' . $old_producttype_image));
+            @unlink(public_path('storage/product_type/' . $old_product_type_image));
         }
 
         
 
-        $check = $producttype->save();
+        $check = $product_type->save();
         if ($check) {
-            return redirect('admin/producttype')->with('success', "Cập nhật điện thoại " . $producttype->producttype_name . " thành công");
+            return redirect('admin/product_type')->with('success', "Cập nhật điện thoại " . $product_type->product_type_name . " thành công");
         }
-        return redirect('admin/producttype/' . $producttype->producttype_id . "/edit")->with('error', "Cập nhật thất bại");
+        return redirect('admin/product_type/' . $product_type->product_type_id . "/edit")->with('error', "Cập nhật thất bại");
     }
 
     /**
@@ -153,11 +153,11 @@ class ProductTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($producttype_id)
+    public function destroy($product_type_id)
     {
-        $producttype = ProductType::findOrFail($producttype_id);
+        $product_type = ProductType::findOrFail($product_type_id);
 
-        if($producttype->delete()) {
+        if($product_type->delete()) {
             return response()->json([
                 'message' => 'success'
             ]);
