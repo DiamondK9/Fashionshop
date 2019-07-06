@@ -27,9 +27,9 @@ class CreateProducts extends Migration
                 //     ->ondelete('cascade');
 
             $table->integer('producer_id')->unsigned();
-                $table->foreign('producer_id')
-                    ->references('producer_id')->on('producers')
-                    ->onDelete('cascade');
+                // $table->foreign('producer_id')
+                //     ->references('producer_id')->on('producers')
+                //     ->onDelete('cascade');
             //thứ tự tạo các cột không quan trọng, ở đây mình chỉ muốn để các cột ID và primary, foreign key ở cùng nhau thôi.
 
             $table->string('product_code')->default(0)->nullable();  
