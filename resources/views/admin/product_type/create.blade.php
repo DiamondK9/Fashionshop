@@ -21,10 +21,10 @@
 		<input type="text" name="product_type_name" class="form-control">
 	</div>
 
-	{{-- <div class="form-group">
+	<div class="form-group">
 		<label>Hình ảnh</label>
 		<input type="file" name="product_type_image" class="form-control">
-	</div> --}}
+	</div>
 
 	{{-- <div class="form-group">
 		<label>Phân khúc Sản Phẩm</label>

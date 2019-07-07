@@ -54,8 +54,8 @@ class ProductController extends Controller
         ];
         $request->validate($rules);
 
+        //Storing Product Image here
         $product_image = '';
-
         if ($request->hasFile('product_image')) 
         {
             $file = $request->file('product_image');
@@ -64,9 +64,19 @@ class ProductController extends Controller
             $file->storeAs("public/product", $product_image);
         }
 
+        //End of storing Product Image
+
+        // $product_size = '';
+        // if (!$request->has('product_size'))
+        // {
+            
+            
+        // }
+
+
         $product = new Product;
         $product->fill($request->all());
-        
+    
         $product->product_image = $product_image;
 
         $check = $product->save();

@@ -35,6 +35,36 @@
 		</select>
 	</div>
 
+	<div class="checkbox">Kích cỡ
+		<h3>Kích cỡ</h3>
+		<p>Lựa chọn kích cỡ của sản phẩm nếu có</p>
+		<form>
+			<label>
+				<input type="checkbox" name="product_size[]" value="XXS"/>XXS
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="XS"/>XS
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="S"/>S	
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="M"/>M
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="L"/>L
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="XL"/>XL
+			</label>
+			<label>
+				<input type="checkbox" name="product_size[]" value="XXL"/>XXL
+			</label>	
+		</form>
+			
+	</div>
+	
+
 	<div class="form-group">
 		<label>Nhà cung cấp</label>
 		<select name="producer_id">

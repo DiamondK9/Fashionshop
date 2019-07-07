@@ -3,7 +3,7 @@
 	<a class="btn btn-primary" href="{{url('admin/product_type/create')}}">Tạo mới Loại Sản Phẩm</a>
 	<table class="table table-striped table-hover">
 		<tr>
-			<th>product_type ID</th>
+			<th>ID Loại Sản Phẩm</th>
 			<th>Tên loại Sản Phẩm</th>
 			<th>Hình ảnh đại diện</th>
 			<th>Phân khúc sản Phẩm</th>
