@@ -98,7 +98,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="#"><i class="fa fa-home"></i>Trang chủ</a>
+                            <a href="{{route('home.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
                         </li>
                         <li>
                             <a href="{{route('product.index')}}"><i class="fa fa-book"></i>Quản lý sản phẩm </a>

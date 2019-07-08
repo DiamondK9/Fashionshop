@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->paginate(15);
+        $products = Product::query()->paginate(6);
         
         return view('admin.product.index', ['products' => $products]);
     }
@@ -65,14 +65,6 @@ class ProductController extends Controller
         }
 
         //End of storing Product Image
-
-        // $product_size = '';
-        // if (!$request->has('product_size'))
-        // {
-            
-            
-        // }
-
 
         $product = new Product;
         $product->fill($request->all());

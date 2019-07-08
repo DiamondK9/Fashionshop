@@ -32,7 +32,7 @@
 		<label>Loại Sản Phẩm</label>
 		<select name="product_type_id">
 			@foreach($product_types as $product_type)
-				<option {{$product_type->product_type_id == $product->product_type_id ? "selected" : ''}} value="{{$product_type->product_type_id}}">{{$product_type->name}}</option>
+				<option {{$product_type->product_type_id == $product->product_type_id ? "selected" : ''}} value="{{$product_type->product_type_id}}">{{$product_type->product_type_name}}</option>
 			@endforeach
 		</select>
 	</div>

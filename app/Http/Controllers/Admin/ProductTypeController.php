@@ -17,7 +17,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $product_types = ProductType::query()->paginate(15);
+        $product_types = ProductType::query()->paginate(6);
 
         return view('admin.product_type.index', ['product_types' => $product_types]);
     }

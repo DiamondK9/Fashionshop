@@ -60,9 +60,8 @@
 			<tr>
 				<td>{{$product->product_id}}</td>
 
-				<td{{isset($product->product_type) ? $product->product_type->product_type_name : ""}}></td>
-				{{-- <td>{{isset($product->producer) ? $product->producer->producer_id : ""}}</td> --}}
-				{{-- <td>{{$product->producer_id}}</td> --}}
+				<td>{{isset($product->product_type) ? $product->product_type->product_type_name : ""}}</td>
+
 				<td>{{isset($product->producer) ? $product->producer->producer_name :""}}</td>
 
 				<td>{{$product->product_code }}</td>

@@ -18,7 +18,7 @@
 Route::get('/', "\App\Http\Controllers\HomeController@index");
 
 Route::prefix('admin')->group(function() {
-	Route::get("home", "\App\Http\Controllers\Admin\HomeController@index");
+	Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
 	Route::prefix("product")->group(function() {
 		Route::get('/', '\App\Http\Controllers\Admin\ProductController@index')->name('product.index');

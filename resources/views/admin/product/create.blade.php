@@ -35,7 +35,7 @@
 		</select>
 	</div>
 
-	<div class="checkbox">Kích cỡ
+	{{-- <div class="checkbox">Kích cỡ
 		<h3>Kích cỡ</h3>
 		<p>Lựa chọn kích cỡ của sản phẩm nếu có</p>
 		<form>
@@ -62,7 +62,7 @@
 			</label>	
 		</form>
 			
-	</div>
+	</div> --}}
 	
 
 	<div class="form-group">
