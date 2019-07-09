@@ -9,8 +9,8 @@ $factory->define(\App\Models\Producer::class, function (Faker $faker) {
     return [
         'producer_name'=>$faker->name,
         'producer_image'=>$faker->imageUrl(),
-        'producer_phone'=>random(10000,90000),
+        'producer_phone'=>random_int(10000,99999),
         'producer_email'=>$faker->email,
-        'active'=> 2
+        'active'=> 1
     ];
 });

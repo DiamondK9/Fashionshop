@@ -37,14 +37,22 @@ class ProductTypeSeeder extends Seeder
         $model->save();
 
         $model = new \App\Models\ProductType;
-        $model->product_type_name = "Bộ Trang Phục";
+        $model->product_type_name = "Trang phục Công Sở";
         $model->active = 1;
         $model->save();
 
         $model = new \App\Models\ProductType;
-        $model->product_type_name = "Mũ";
+        $model->product_type_name = "Trang Phục Dạ Hội";
         $model->active = 1;
         $model->save();
+
+        $model = new \App\Models\ProductType;
+        $model->product_type_name = "Đồ lót";
+        $model->active = 1;
+        $model->save();
+
+
+       
 
     }
 }

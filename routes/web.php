@@ -16,8 +16,16 @@
 // });
 
 Route::get('/', "\App\Http\Controllers\HomeController@index");
+Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail");
+
 
 Route::prefix('admin')->group(function() {
+	// Login Routing
+	Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');
+		
+	Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
+	//End of Login Routing
+	
 	Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
 	Route::prefix("product")->group(function() {
@@ -59,3 +67,10 @@ Route::prefix('admin')->group(function() {
 		Route::delete('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@destroy')->name('product_type.delete');
 	});
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
