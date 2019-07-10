@@ -20,25 +20,29 @@ Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail");
 
 
 Route::prefix('admin')->group(function() {
-	// Login Routing
-	Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');
-		
-	Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
-	//End of Login Routing
-	
-	Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
-	Route::prefix("product")->group(function() {
-		Route::get('/', '\App\Http\Controllers\Admin\ProductController@index')->name('product.index');
+	Route::middleware(['admin.guest'])->group(function() {
+		// Login Routing
+		Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');		
+		Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
+		//End of Login Routing
+	});
 
-		Route::get("/create", '\App\Http\Controllers\Admin\ProductController@create')->name('product.create');
-		Route::post('', '\App\Http\Controllers\Admin\ProductController@store')->name('product.store');
+	Route::middleware(['admin', 'auth:admin'])->group(function() {
 
-		Route::get('/{product}/edit', '\App\Http\Controllers\Admin\ProductController@edit')->name('product.edit');
+		Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
-		Route::put('/{product}', '\App\Http\Controllers\Admin\ProductController@update')->name('product.update');
+		Route::prefix("product")->group(function() {
+			Route::get('/', '\App\Http\Controllers\Admin\ProductController@index')->name('product.index');
 
-		Route::delete('/{product}', '\App\Http\Controllers\Admin\ProductController@destroy')->name('product.delete');
+			Route::get("/create", '\App\Http\Controllers\Admin\ProductController@create')->name('product.create');
+			Route::post('', '\App\Http\Controllers\Admin\ProductController@store')->name('product.store');
+
+			Route::get('/{product}/edit', '\App\Http\Controllers\Admin\ProductController@edit')->name('product.edit');
+
+			Route::put('/{product}', '\App\Http\Controllers\Admin\ProductController@update')->name('product.update');
+
+			Route::delete('/{product}', '\App\Http\Controllers\Admin\ProductController@destroy')->name('product.delete');
 	});
 
 	Route::prefix("producer")->group(function() {
@@ -65,12 +69,10 @@ Route::prefix('admin')->group(function() {
 		Route::put('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@update')->name('product_type.update');
 
 		Route::delete('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@destroy')->name('product_type.delete');
+		});
 	});
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

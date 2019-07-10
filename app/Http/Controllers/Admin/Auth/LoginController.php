@@ -44,7 +44,7 @@ class LoginController extends Controller
     return view('admin.auth.login');
     }
     public function username(){
-        return "admin_username";
+        return "username";
     }
 
     protected function guard(){

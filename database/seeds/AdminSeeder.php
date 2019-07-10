@@ -12,10 +12,10 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = new \App\Models\Admin;
-        $admin->admin_username = "admin";
-        $admin->admin_email = "admin@gmail.com";
-        $admin->admin_password = bcrypt(123456);
-        $admin->admin_name = "admin";
+        $admin->username = "admin";
+        $admin->email = "admin@gmail.com";
+        $admin->password = bcrypt(12345678);
+        $admin->name = "admin";
         $admin->active = 1;
         $admin->save();
     }
