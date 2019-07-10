@@ -52,7 +52,16 @@
 
                             <li><a href="#">Đăng kí</a></li>
 
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
                         </ul>
                         <div class="col-xs-12 ">
                             <input class="col-md-6 col-xs-10" name="" type="text" style="" placeholder="Tìm kiếm" id="txtSearch" />
