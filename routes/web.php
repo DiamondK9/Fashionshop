@@ -15,17 +15,25 @@
 //     return view('welcome');
 // });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/', "\App\Http\Controllers\HomeController@index");
 Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail");
 
 
 Route::prefix('admin')->group(function() {
 
-	Route::middleware(['admin.guest'])->group(function() {
-		// Login Routing
-		Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');		
-		Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
-		//End of Login Routing
+	Route::middleware('admin')->group(function() {
+		//1st Login Routing
+
+		Route::get('/login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm')->name('admin.login');		
+		Route::post('/login', '\App\Http\Controllers\Admin\Auth\LoginController@login')->name('admin.login.submit');//both of admin.login and admin.login.submit was defined in views\auth\admin-login.blade.php
+		Route::get('/', 'AdminController@index')->name('admin.dashboard'); // the link leads to admin.dashboard need to put after both login and login.submit so after the authentication user will be redirect to admin.dashboard following this order.admin.login->admin.login.submit->admin.dashboard
+
+		//End of 1st Login Routing
 	});
 
 	Route::middleware(['admin', 'auth:admin'])->group(function() {
@@ -73,6 +81,4 @@ Route::prefix('admin')->group(function() {
 	});
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

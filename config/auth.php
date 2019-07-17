@@ -43,7 +43,7 @@ return [
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admin',
+            'provider' => 'admins', //provider basically a shortcut where you can define driver and model
         ],
 
         'api' => [
@@ -54,7 +54,7 @@ return [
 
         'admin-api' => [
             'driver' => 'token',
-            'provider' => 'admin',
+            'provider' => 'admins',
             
         ],
     ],
@@ -85,7 +85,7 @@ return [
     
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Admin::class, //link to file model Admin.php in App\Models, sepcify Admin database and 'guard'
 
         ]
         // 'users' => [
