@@ -61,7 +61,14 @@
                                             <a href="#" class="btn btn-default btn-flat">Đổi mật khẩu</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Đăng xuất</a>
+                                            <a href="{{route('logout')}}"  
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" 
+                                                class="btn btn-default btn-flat">Đăng xuất</a>
+                                                
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    {{ csrf_field() }}
+                                                </form>
                                         </div>
                                     </li>
                                 </ul>

@@ -3,7 +3,7 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8">
-    <title>Đăng nhập</title>
+    <title>Đăng nhập vào Admin Group</title>
     <link rel="stylesheet" href="{{asset('asset_admin/css/animate.css')}}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="{{asset('asset_admin/css/style2.css')}}">
@@ -17,9 +17,9 @@
                     {{csrf_field()}}
                     
                     <div class="box-header">
-                            <h2>Đăng nhập</h2>
+                            <h2>Admin Đăng nhập</h2>
                     </div>
-                    <label for="username">Tên đăng nhập</label>
+                    <label for="username">Tên Admin đăng nhập</label>
                     <br/>
                     <input type="text" name="username" id="username">
 
