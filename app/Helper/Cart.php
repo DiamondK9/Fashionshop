@@ -6,37 +6,34 @@ class Cart
 	public static function getInstance() {
 		return new static();
 	}
-	public function addCart($id, $item) {
-		$cart = $this->getCart($id);
+	public function addCart($product_id, $item) {
+		$cart = $this->getCart($product_id);
 
 		if (empty($cart)) {
 			$cart = [
-				"name" => $item['name'],
-				"qty" => $item['qty'],
-				"id" => $item['id'],
-				"price" => $item['price'],
-				"image" => $item['image']
+				"product_name" => $item['product_name'],
+				"product_id" => $item['product_id'],
+				"product_price" => $item['product_price'],
+				"product_image" => $item['product_image']
 			];
 		}
 		else {
-			$qty = $cart['qty'] + $item['qty'];
-			$cart['qty'] = $qty;
 		}
 
-		$this->setItemCart($id, $cart);
+		$this->setItemCart($product_id, $cart);
 	}
 
-	public function setItemCart($id, $cart) {
+	public function setItemCart($product_id, $cart) {
 		if (!isset($_SESSION['cart'])) {
 			$_SESSION['cart'] = [];
 		}
 
-	$_SESSION['cart']['$id'] = $cart;
+	$_SESSION['cart']['$product_id'] = $cart;
 	}
 
-	public function getItemCart($id) {
-		if (isset($_SESSION['cart'][$id])) {
-			return $_SESSION['cart'][$id];
+	public function getItemCart($product_id) {
+		if (isset($_SESSION['cart'][$product_id])) {
+			return $_SESSION['cart'][$product_id];
 		}
 		return [];
 	}
@@ -47,9 +44,9 @@ class Cart
 		}
 		return [];
 	}
-	public function getCart($id) {
-		if (isset($_SESSION['cart']['$id'])) {
-			return $_SESSION['cart']['id'];
+	public function getCart($product_id) {
+		if (isset($_SESSION['cart'][$product_id])) {
+			return $_SESSION['cart'][$product_id];
 		}
 		return[];
 	}
@@ -58,16 +55,14 @@ class Cart
 		return count($this->getAllCart());
 	} 
 
-	public function removeCart($id) {
-		$cart = $this->getItemCart($id);
+	public function removeCart($product_id) {
+		$cart = $this->getItemCart($product_id);
 		if (!empty($cart)) {
-			unset($_SESSION['cart']['$id']);
+			unset($_SESSION['cart']['$product_id']);
 			return true; 
 		}
 		return false;
 	}
-	public function updateQty($id, $qty) {
-		$_SESSION['cart'][$id]['qty'] = $qty;
 	}
 }
 

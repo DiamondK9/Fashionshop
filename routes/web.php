@@ -16,26 +16,35 @@
 // });
 
 Route::get('/', "\App\Http\Controllers\HomeController@index");
-Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail");
+
+//qui định chuỗi sau detail là slug. Khi vào trang web detail, dựa theo vị trí đường link mình vừa nhấn, tên của nó sẽ là slug và khi chuyển sang trang detail, detail của slug đó sẽ được gọi ra.
+Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name('home.detail');
+
+//Khu vực Cart cho SP
 Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
-Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart");
+Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart")->name('cart.list');
 Route::post("cart/remove", "\App\Http\Controllers\CartController@remove_cart");
 Route::post("cart/update", "\App\Http\Controllers\CartController@update_cart");
+//Hết khu vực Cart cho SP
 
 Route::prefix('admin')->group(function() {
 
 	Route::middleware(['admin.guest'])->group(function() {
 		// Login Routing
-		Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');		
+		Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');	
+
 		Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
 		//End of Login Routing
 	});
 
-	Route::middleware(['admin', 'auth:admin'])->group(function() {
+	Route::middleware(['admin', 'auth:admin'])->group(function() 
+	{
 
 		Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
-		Route::prefix("product")->group(function() {
+		Route::prefix("product")->group(function() 
+
+		{	
 			Route::get('/', '\App\Http\Controllers\Admin\ProductController@index')->name('product.index');
 
 			Route::get("/create", '\App\Http\Controllers\Admin\ProductController@create')->name('product.create');
@@ -46,7 +55,7 @@ Route::prefix('admin')->group(function() {
 			Route::put('/{product}', '\App\Http\Controllers\Admin\ProductController@update')->name('product.update');
 
 			Route::delete('/{product}', '\App\Http\Controllers\Admin\ProductController@destroy')->name('product.delete');
-	});
+		});
 
 		Route::prefix("producer")->group(function() {
 			Route::get('/', '\App\Http\Controllers\Admin\ProducerController@index')->name('producer.index');

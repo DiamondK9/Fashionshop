@@ -4,21 +4,21 @@ session_start();
 
 use Illuminate\Http\Request;
 use App\Helper\Cart;
-use App\Models\Phone;
+use App\Models\Product;
 
 class CartController extends Controller
 {
 	public function add_cart(Request $request) {
-		$id = $request->post('id');
-		$qty = $request->post("txtSoLuong");
-		$phone = Phone::findOrFail($id);
-		if (isset($phone)) {
+		$product_id = $request->post('product_id');
+		$product = Product::findOrFail($product_id);
+		if (isset($product)) {
 			$item	= [
-				'name' => $phone->name,
-				"id" => $phone->id,
-				"image" => $phone->image,
+				'product_name' => $product->product_name,
+				"product_id" => $product->product_id,
+				"product_image" => $product->product_image,
+				"product_price" => $product->product_price,
 			];
-			Cart::getInstance()->addCart($id, $item);
+			Cart::getInstance()->addCart($product_id, $item);
 			return redirect(url("cart/list"))->with("success", "Thêm giỏ hàng thành công");
 		}
 		return redirect("/");
@@ -30,8 +30,8 @@ class CartController extends Controller
 	}
 
 	public function remove_cart(Request $request) {
-		$id = $request->post('id');
-		$remove = Cart::getInstance()->removeCart($id);
+		$product_id = $request->post('product_id');
+		$remove = Cart::getInstance()->removeCart($product_id);
 		if ($remove) {
 			return reponse()->json([
 				'staus' => 1,
@@ -44,13 +44,11 @@ class CartController extends Controller
 		]);
 	}
 	public function update_cart(Request $request) {
-		$id = $request->post('id');
-		$qty = $request->post('qty');
+		$product_id = $request->post('product_id');
 
-		$cart = Cart::getInstance()->getItemCart($id);
+		$cart = Cart::getInstance()->getItemCart($product_id);
 
 		if (!empty($cart)) {
-			Cart::getInstance()->updateQty($id, $qty);
 			return reponse()->json([
 				'staus' => 1,
 				'message' => "Cập nhật thành công",

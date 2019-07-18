@@ -83,7 +83,7 @@
                 
                 <section class="span9 first">
                     <div class="blog-sec-slider">
-                        <div class="slider5">
+                        <div class="slider5" >
                             <div class="slide"><a ><img src="{{asset('asset_admin/images/2.jpg')}}" alt="" title="#htmlcaption" ></a></div>
                             <div class="slide"><a ><img src="{{asset('asset_admin/images/3.jpg')}}" alt=""/></a></div>
                             <div class="slide"><a ><img src="{{asset('asset_admin/images/4.jpg')}}" alt=""/></a></div>
