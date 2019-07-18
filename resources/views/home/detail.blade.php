@@ -16,7 +16,7 @@
                 <div class="span6">
                     <strong class="title">Tổng quan</strong>
                     <p class="text_chi_tiet">Nhà Sản Xuất <a href="">1</a></p>
-                    <p class="text_chi_tiet">Giá gốc: 2,400$</p>
+                    <p class="text_chi_tiet">Số Lượng: 240</p>
                     <p class="text_chi_tiet">Giá bán: <span class="giamoi_chitiet">2,000$</span></p>
                     <div class="comm-nav">
                         <strong class="title2">Số lượng mua</strong>

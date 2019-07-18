@@ -1,6 +1,6 @@
 @extends('index')
 @section('content')
-<h2>Sách mới</h2>
+<h2>Danh sách mẫu hàng</h2>
 <section class="grid-holder features-books">
     @forelse($products as $product)
     <figure class="span4 slide first chinh1" style="position: relative;">
@@ -38,6 +38,6 @@
 </section>
 <div style="clear: both;"></div>
 <section class="grid-holder features-books">
-    noi nay de phan trang
+    
 </section>
 @endsection
