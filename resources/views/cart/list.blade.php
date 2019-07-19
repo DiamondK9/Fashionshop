@@ -45,7 +45,7 @@
 			@endforelse
 			<tr>
 				<td>Tổng tiền: {{number_format($total)}}</td>
-				<td><a type="" class="btn btn-primary">Tiếp tục mua hàng</a></td>
+				<td><a type="" href="{{ route('home')}}" class="btn btn-primary">Tiếp tục mua hàng</a></td>
 				<td><a type="" class="btn btn-primary">Thanh Toán</a></td>
 			</tr>
 			
@@ -57,21 +57,28 @@
 		alert(12);
 	}
 	$(document).ready(function() {
+
 		$(".btnUpdateCart").click(function(e) {
 			let product_quantity = $(this).parent().parent().find("#txtSoLuong").val();
 			let product_id = $(this).data('product_id');
 			$.ajax({
 				url: '{{url("cart/update")}}',
-				type: "post",
+				type: "POST",
+				dataType: 'json',
 				data: {product_id: product_id, product_quantity: product_quantity, _token: "{{csrf_token()}}"},
+
 				success: function(result) {
-					if (result,status == 1) {
+					if (result.status == 1) {
 						alert(result.message);
+
 					}
 					else {
 						alert(result.message);
+
 					}
 				},
+
+
 				error: function(error) {
 					alert("Không cập nhật được");
 				}

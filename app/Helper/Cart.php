@@ -61,7 +61,7 @@ class Cart
 	public function removeCart($product_id) {
 		$cart = $this->getItemCart($product_id);
 		if (!empty($cart)) {
-			unset($_SESSION['cart']['$product_id']);
+			unset($_SESSION['cart'][$product_id]);
 			return true; 
 		}
 		return false;

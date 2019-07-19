@@ -5,6 +5,7 @@ session_start();
 use Illuminate\Http\Request;
 use App\Helper\Cart;
 use App\Models\Product;
+use Illuminate\Http\Response;
 
 class CartController extends Controller
 {
@@ -37,31 +38,32 @@ class CartController extends Controller
 		$remove = Cart::getInstance()->removeCart($product_id);
 		if ($remove) {
 			return reponse()->json([
-				'staus' => 1,
+				'status' => 1,
 				'message' => "Xóa thành công",
 			]);
 		}
 		return reponse()->json([
-			'staus' => 0,
+			'status' => 0,
 			'message' => "Xóa thất bại. Không có sản phẩm này tron giỏ hàng",
 		]);
 	}
 	public function update_cart(Request $request) {
+
 		$product_id = $request->post('product_id');
 		$product_quantity = $request->post('product_quantity');
 
 		$cart = Cart::getInstance()->getItemCart($product_id);
 
 		if (!empty($cart)) {
-			art::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+			Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
 			return reponse()->json([
-				'staus' => 1,
+				'status' => 1,
 				'message' => "Cập nhật thành công",
 			]);
 		}
 		return reponse()->json([
-			'staus' => 0,
-			'message' => "Cập nhật thất bại. Không có sản phẩm này tron giỏ hàng",
+			'status' => 0,
+			'message' => "Cập nhật thất bại. Không có sản phẩm này trong giỏ hàng",
 		]);
 	}
 }
