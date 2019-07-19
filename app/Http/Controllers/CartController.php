@@ -54,14 +54,31 @@ class CartController extends Controller
 
 		$cart = Cart::getInstance()->getItemCart($product_id);
 
-		if (!empty($cart)) {
-			Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
-			return reponse()->json([
-				'status' => 1,
+		// if (!empty($cart)) {
+		// 	Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+		// 	return reponse()->json([
+		// 		'status' => 1,
+		// 		'message' => "Cập nhật thành công",
+		// 	]);
+		// }
+
+		// if ($request instanceof Jsonable) {
+		// 	$request = Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+  //           return $request->toJson([
+  //           	'status' => 1,
+		// 		'message' => "Cập nhật thành công",
+  //           ]);
+
+  //       } 
+        if ($request instanceof Arrayable) {
+        	$request = Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+            return json_encode($request->toArray([
+            	'status' => 1,
 				'message' => "Cập nhật thành công",
-			]);
-		}
-		return reponse()->json([
+            ]));
+        }
+
+		return json_encode([
 			'status' => 0,
 			'message' => "Cập nhật thất bại. Không có sản phẩm này trong giỏ hàng",
 		]);
