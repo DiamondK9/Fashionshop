@@ -10,6 +10,7 @@ class CartController extends Controller
 {
 	public function add_cart(Request $request) {
 		$product_id = $request->post('product_id');
+		$product_quantity = $request->post("txtSoLuong");
 		$product = Product::findOrFail($product_id);
 		if (isset($product)) {
 			$item	= [
@@ -17,6 +18,8 @@ class CartController extends Controller
 				"product_id" => $product->product_id,
 				"product_image" => $product->product_image,
 				"product_price" => $product->product_price,
+				"product_quantity" => $product_quantity
+    		
 			];
 			Cart::getInstance()->addCart($product_id, $item);
 			return redirect(url("cart/list"))->with("success", "Thêm giỏ hàng thành công");
@@ -45,10 +48,12 @@ class CartController extends Controller
 	}
 	public function update_cart(Request $request) {
 		$product_id = $request->post('product_id');
+		$product_quantity = $request->post('product_quantity');
 
 		$cart = Cart::getInstance()->getItemCart($product_id);
 
 		if (!empty($cart)) {
+			art::getInstance()->updateproduct_quantity($product_id, $product_quantity);
 			return reponse()->json([
 				'staus' => 1,
 				'message' => "Cập nhật thành công",

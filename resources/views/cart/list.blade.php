@@ -15,12 +15,22 @@
 			</tr>
 		</thead>
 		<tbody>
+
 			<?php $total = 0; ?>
 			@forelse($carts as $cart )
+			<?php $total += $cart['product_quantity'] * $cart['product_price'] ; ?>
+
 			<tr>
 				<td><img src="{{asset('../storage/app/public/product/' . $cart['product_image'])}}" alt="" style="width:100px"></td>
+
 				<td>{{$cart['product_name']}}</td>
+
 				<td>{{number_format($cart['product_price'])}}</td>
+
+				<td><input product_name="txtSoLuong" class="txtSoLuong" id="txtSoLuong" type="number" min="1" value="{{$cart['product_quantity']}}" required pattern="[0-9]{1,3}" title="Số lượng phải là số và nhỏ hơn 4 kí tự"/></td>
+
+				<td>{{number_format($cart['product_quantity'] * $cart['product_price'])}}</td>
+
 				<td>
 					<button type="button" class="btn btn-success btnUpdateCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-refresh"></i></button>
 				</td>
@@ -48,10 +58,12 @@
 	}
 	$(document).ready(function() {
 		$(".btnUpdateCart").click(function(e) {
+			let product_quantity = $(this).parent().parent().find("#txtSoLuong").val();
 			let product_id = $(this).data('product_id');
 			$.ajax({
 				url: '{{url("cart/update")}}',
 				type: "post",
+				data: {product_id: product_id, product_quantity: product_quantity, _token: "{{csrf_token()}}"},
 				success: function(result) {
 					if (result,status == 1) {
 						alert(result.message);

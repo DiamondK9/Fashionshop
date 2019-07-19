@@ -22,7 +22,7 @@ Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name
 
 //Khu vực Cart cho SP
 Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
-Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart")->name('cart.list');
+Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart");
 Route::post("cart/remove", "\App\Http\Controllers\CartController@remove_cart");
 Route::post("cart/update", "\App\Http\Controllers\CartController@update_cart");
 //Hết khu vực Cart cho SP

@@ -12,12 +12,15 @@ class Cart
 		if (empty($cart)) {
 			$cart = [
 				"product_name" => $item['product_name'],
+				"product_quantity" => $item['product_quantity'],
 				"product_id" => $item['product_id'],
 				"product_price" => $item['product_price'],
 				"product_image" => $item['product_image']
 			];
 		}
 		else {
+			$product_quantity = $cart['product_quantity'] + $item['product_quantity'];
+			$cart['product_quantity'] = $product_quantity;
 		}
 
 		$this->setItemCart($product_id, $cart);
@@ -63,6 +66,9 @@ class Cart
 		}
 		return false;
 	}
+	public function updateproduct_quantity($product_id, $product_quantity) {
+		$_SESSION['cart'][$product_id]['product_quantity'] = $product_quantity;
+	
 	}
 }
 

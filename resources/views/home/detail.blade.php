@@ -15,10 +15,15 @@
                 </div>
                 <div class="span6">
                     <strong class="title">Tổng quan</strong>
+
                     <p class="text_chi_tiet">Thương Hiệu: <a href="">{{ isset($product->producer) ? $product->producer->producer_name :"N/A" }}</a></p>
+
                     <p class="text_chi_tiet">Phân Loại: <a href="">{{isset($product->product_type) ? $product->product_type->product_type_name : "N/A"}}</a></p>
-                    <p class="text_chi_tiet">Số Lượng: <a>{{ number_format($product->product_quantity) }}</a></p>
+
+                    <p class="text_chi_tiet">Số Lượng: <a name="product_quantity" id="product_quantity">{{ number_format($product->product_quantity) }}</a></p>
+
                     <p class="text_chi_tiet">Giá bán: <span class="giamoi_chitiet">{{ number_format($product->product_price) }} VND</span></p>
+
                     <div class="comm-nav">
                         <strong class="title2">Số lượng mua</strong>
                         <ul><form method="POST" action="{{ url("cart/add") }}">
@@ -29,6 +34,7 @@
                             </form>
                         </ul>
                     </div>
+
                 </div>
             </div>
 
