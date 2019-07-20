@@ -53,6 +53,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+
 	function deleteCart() {
 		alert(12);
 	}
@@ -63,7 +64,7 @@
 			let product_id = $(this).data('product_id');
 			$.ajax({
 				url: '{{url("cart/update")}}',
-				type: "POST",
+				type: "post",
 				dataType: 'json',
 				data: {product_id: product_id, product_quantity: product_quantity, _token: "{{csrf_token()}}"},
 
