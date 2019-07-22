@@ -19,7 +19,7 @@ class CartController extends Controller
 				"product_id" => $product->product_id,
 				"product_image" => $product->product_image,
 				"product_price" => $product->product_price,
-				"product_quantity" => $product_quantity,
+				"product_quantity" => $product_quantity
     		
 			];
 			Cart::getInstance()->addCart($product_id, $item);
@@ -44,7 +44,7 @@ class CartController extends Controller
 		}
 		return Response()->json([
 			'status' => 0,
-			'message' => "Xóa thất bại. Không có sản phẩm này tron giỏ hàng",
+			'message' => "Xóa thất bại. Không có sản phẩm này trong giỏ hàng",
 		]);
 	}
 	public function update_cart(Request $request) {

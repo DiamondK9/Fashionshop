@@ -24,8 +24,9 @@ Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name
 Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart");//edit 22/07/19
 
 Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
-Route::post('cart/remove', "\App\Http\Controllers\CartController@remove_cart");
 Route::post('cart/update', "\App\Http\Controllers\CartController@update_cart");
+Route::post('cart/remove', "\App\Http\Controllers\CartController@remove_cart");
+
 //Hết khu vực Cart cho SP
 
 Route::prefix('admin')->group(function() {

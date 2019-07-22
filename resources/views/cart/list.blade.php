@@ -18,6 +18,7 @@
 		<tbody>
 
 			<?php $total = 0; ?>
+
 			@forelse($carts as $cart )
 
 				<?php $total += $cart['product_quantity'] * $cart['product_price'] ; ?>
@@ -33,6 +34,8 @@
 
 					<td>{{number_format($cart['product_quantity'] * $cart['product_price'])}}</td>
 
+					<input type="hidden" name="product_id" data-id="product_id" id="product_id" value="{{ $cart['product_id'] }}">
+
 					<td>
 						<button type="button" class="btn btn-success btnUpdateCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-refresh"></i></button>
 					</td>
@@ -44,6 +47,7 @@
 				<tr>
 					<td colspan="5">Không có sản phẩm</td>
 			</tr>
+				
 			@endforelse
 			<tr>
 				<td>Tổng tiền: {{number_format($total)}}</td>
@@ -87,35 +91,38 @@
 				}
 			});
 		});
-		$(".btnDeleteCart").click(function(e) {
+
+		$('.btnDeleteCart').click(function(e) 
+		{
 			let product_id = $(this).data('product_id');
-			if(confirm("Bạn chắc chắn xóa sản phẩm này?")) {
-				// $.ajaxSetup({
-				//     headers: {
-				//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				//     }
-				// });
-
+			if(confirm("Bạn chắc chắn xóa sản phẩm này?")) 
+			{
 				$.ajax({
-					url: '{{url("cart/remove")}}',
+					
+						url: '{{url('cart/remove')}}',
+						type: 'POST',
+						dataType: 'json',
+						data:{ 
+								product_id: product_id,
+								 "_token": '{{csrf_token()}}'
+							},
 
-					type: 'POST',
-					dataType: 'json',
-					data: {product_id: product_id, _token: "{{csrf_token()}}"},
-					success: function(result) {
-						if (result,status == 1) {
-							alert(result.message);
-							window.location.reload(true);
+						success: function(result){
+							if (result.status == 1){ 
+
+								alert(result.message);
+								window.location.reload(true);
+							}
+							else {
+								alert(result.message);
+							}
+						},
+						error: function(error) {
+							alert("Không xóa được");
 						}
-						else {
-							alert(result.message);
-						}
-					},
-					error: function(error) {
-						alert("Không xóa được");
-					}
-				});
+					});
 			}
+
 		});
 	});
 		
