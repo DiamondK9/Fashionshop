@@ -19,7 +19,7 @@ class CartController extends Controller
 				"product_id" => $product->product_id,
 				"product_image" => $product->product_image,
 				"product_price" => $product->product_price,
-				"product_quantity" => $product_quantity
+				"product_quantity" => $product_quantity,
     		
 			];
 			Cart::getInstance()->addCart($product_id, $item);
@@ -37,12 +37,12 @@ class CartController extends Controller
 		$product_id = $request->post('product_id');
 		$remove = Cart::getInstance()->removeCart($product_id);
 		if ($remove) {
-			return reponse()->json([
+			return Response()->json([
 				'status' => 1,
 				'message' => "Xóa thành công",
 			]);
 		}
-		return reponse()->json([
+		return Response()->json([
 			'status' => 0,
 			'message' => "Xóa thất bại. Không có sản phẩm này tron giỏ hàng",
 		]);
@@ -54,13 +54,13 @@ class CartController extends Controller
 
 		$cart = Cart::getInstance()->getItemCart($product_id);
 
-		// if (!empty($cart)) {
-		// 	Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
-		// 	return reponse()->json([
-		// 		'status' => 1,
-		// 		'message' => "Cập nhật thành công",
-		// 	]);
-		// }
+		if (!empty($cart)) {
+			Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+			return Response()->json([
+				'status' => 1,
+				'message' => "Cập nhật thành công",
+			]);
+		}
 
 		// if ($request instanceof Jsonable) {
 		// 	$request = Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
@@ -70,15 +70,15 @@ class CartController extends Controller
   //           ]);
 
   //       } 
-        if ($request instanceof Arrayable) {
+        /*if ($request instanceof Arrayable) {
         	$request = Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
             return json_encode($request->toArray([
             	'status' => 1,
 				'message' => "Cập nhật thành công",
             ]));
-        }
+        }*/
 
-		return json_encode([
+		return Response()->json([
 			'status' => 0,
 			'message' => "Cập nhật thất bại. Không có sản phẩm này trong giỏ hàng",
 		]);

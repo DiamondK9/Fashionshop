@@ -7,6 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
     <meta name="viewport" content="width=device-width"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('asset_admin/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('asset_admin/css/style1.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('asset_admin/css/bs.css')}}" rel="stylesheet" type="text/css"/>

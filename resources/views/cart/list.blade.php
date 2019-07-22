@@ -1,5 +1,6 @@
 @extends("index")
 @section('content')
+
 <div class="table-responsive">
 	<h3>Danh sách giỏ hàng</h3>
 	<table class="table table-hover table-striped">
@@ -18,29 +19,30 @@
 
 			<?php $total = 0; ?>
 			@forelse($carts as $cart )
-			<?php $total += $cart['product_quantity'] * $cart['product_price'] ; ?>
 
-			<tr>
-				<td><img src="{{asset('../storage/app/public/product/' . $cart['product_image'])}}" alt="" style="width:100px"></td>
+				<?php $total += $cart['product_quantity'] * $cart['product_price'] ; ?>
 
-				<td>{{$cart['product_name']}}</td>
+				<tr>
+					<td><img src="{{asset('../storage/app/public/product/' . $cart['product_image'])}}" alt="" style="width:100px"></td>
 
-				<td>{{number_format($cart['product_price'])}}</td>
+					<td>{{$cart['product_name']}}</td>
 
-				<td><input product_name="txtSoLuong" class="txtSoLuong" id="txtSoLuong" type="number" min="1" value="{{$cart['product_quantity']}}" required pattern="[0-9]{1,3}" title="Số lượng phải là số và nhỏ hơn 4 kí tự"/></td>
+					<td>{{number_format($cart['product_price'])}}</td>
 
-				<td>{{number_format($cart['product_quantity'] * $cart['product_price'])}}</td>
+					<td><input name="txtSoLuong" class="txtSoLuong" id="txtSoLuong" type="number" min="1" value="{{$cart['product_quantity']}}" required pattern="[0-9]{1,3}" title="Số lượng phải là số và nhỏ hơn 4 kí tự"/></td>
 
-				<td>
-					<button type="button" class="btn btn-success btnUpdateCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-refresh"></i></button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-danger btnDeleteCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-remove"></i></button>
-				</td>
-			</tr>
-			@empty
-			<tr>
-				<td colspan="5">Không có sản phẩm</td>
+					<td>{{number_format($cart['product_quantity'] * $cart['product_price'])}}</td>
+
+					<td>
+						<button type="button" class="btn btn-success btnUpdateCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-refresh"></i></button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger btnDeleteCart" data-id= "{{$cart['product_id']}}"><i class="fa fa-remove"></i></button>
+					</td>
+				</tr>
+				@empty
+				<tr>
+					<td colspan="5">Không có sản phẩm</td>
 			</tr>
 			@endforelse
 			<tr>
@@ -64,7 +66,7 @@
 			let product_id = $(this).data('product_id');
 			$.ajax({
 				url: '{{url("cart/update")}}',
-				type: "post",
+				type: "POST",
 				dataType: 'json',
 				data: {product_id: product_id, product_quantity: product_quantity, _token: "{{csrf_token()}}"},
 
@@ -88,9 +90,17 @@
 		$(".btnDeleteCart").click(function(e) {
 			let product_id = $(this).data('product_id');
 			if(confirm("Bạn chắc chắn xóa sản phẩm này?")) {
+				// $.ajaxSetup({
+				//     headers: {
+				//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				//     }
+				// });
+
 				$.ajax({
 					url: '{{url("cart/remove")}}',
-					type: "post",
+
+					type: 'POST',
+					dataType: 'json',
 					data: {product_id: product_id, _token: "{{csrf_token()}}"},
 					success: function(result) {
 						if (result,status == 1) {
