@@ -3,16 +3,25 @@ namespace App\Http\Controllers;
 session_start();
 
 use Illuminate\Http\Request;
-use App\Helper\Cart;
-use App\Models\Product;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Response;
+use App\Models\Product;
+use App\Helper\Cart;
 
 class CartController extends Controller
 {
+	public function cart()
+	{
+		return view('cart');
+	}
+
 	public function add_cart(Request $request) {
 		$product_id = $request->post('product_id');
-		$product_quantity = $request->post("txtSoLuong");
+		$product_quantity = $request->post('txtSoLuong');
 		$product = Product::findOrFail($product_id);
+
+		//if cart is empty then created the first product
+		//isset kiểm tra xem biến $product đã được khởi tạo trên csdl chưa, nếu được khởi tạo vậy các giá trị mang tên $product sẽ được đưa vào biến $item. trong $cart có $item và giá trị của $item là các giá trị của $product.
 		if (isset($product)) {
 			$item	= [
 				'product_name' => $product->product_name,

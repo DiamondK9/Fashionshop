@@ -11,6 +11,7 @@ class Cart
 
 		if (empty($cart)) {
 			$cart = [
+				//biến $item được khởi tạo bên cart controller -> biến $cart sẽ thực hiện kiểm tra xem $cart có rỗng hay không, nếu rỗng sẽ truyền giá trị của $item vào dãy $cart của mình.
 				"product_name" => $item['product_name'],
 				"product_quantity" => $item['product_quantity'],
 				"product_id" => $item['product_id'],
