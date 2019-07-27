@@ -14,8 +14,8 @@
     <link href="{{asset('asset_admin/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('asset_admin/css/style.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('asset_admin/css/range-slider.css')}}" rel="stylesheet" type="text/css"/>
-
-    <script src="{{asset('asset_admin/js/jquery-2.2.4.min.js')}}" type="text/javascript"></script>
+    
+    <script src="{{asset('asset_admin/js/jquery-3.4.1.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('asset_admin/js/bootstrap.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('asset_admin/js/lib.js')}}"></script>
     <script type="text/javascript" src="{{asset('asset_admin/js/bxslider.js')}}"></script>
@@ -27,7 +27,7 @@
     <script src="{{asset('asset_admin/js/formValidation.min1.js')}}" type="text/javascript"></script>
     <script src="{{asset('asset_admin/js/formValidation.min2.js')}}" type="text/javascript"></script>
     <script src="{{asset('asset_admin/js/index1.js')}}" type="text/javascript"></script>
-    {{-- <script src="{{asset('asset_admin/js/jquery.bpopup.min.js')}}" type="text/javascript"></script> --}}
+    <script src="{{asset('asset_admin/js/jquery.bpopup.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         // $('.social_active').hoverdir( {} );
@@ -45,7 +45,7 @@
                     </section>
                     <section class="span8">
                         <ul class="top-nav2">
-                            <li><a href="#">Giỏ hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i><span style="color: red">&nbsp;&nbsp; 3 </span></a></li>
+                            <li><a href="{{route('cart.list')}}">Giỏ hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i><span style="color: red">&nbsp;&nbsp; 3 </span></a></li>
 
                             <li><a href="#">Đăng nhập</a></li>
 
@@ -69,7 +69,7 @@
                 <nav class="navbar menu1">
                     <div class="container-fluid">
                         <ul class="nav navbar-nav">
-                            <li> <a href="#">Trang chủ</a> </li>
+                            <li> <a href="{{route('home')}}">Trang chủ</a> </li>
                             <li> <a href="#">Giới thiệu</a></li>
                             <li><a href="#">Khuyến mãi</a></li>
                             <li><a href="#">Hỗ trợ khách hàng</a></li>

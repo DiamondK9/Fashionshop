@@ -21,7 +21,7 @@ Route::get('/', "\App\Http\Controllers\HomeController@index");
 Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name('home.detail');
 
 //Khu vực Cart cho SP
-Route::get("cart/list", "\App\Http\Controllers\CartController@list_cart");//edit 22/07/19
+Route::get('/cart/list', "\App\Http\Controllers\CartController@list_cart")->name('cart.list');//edit 22/07/19
 
 Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
 Route::post('cart/update', "\App\Http\Controllers\CartController@update_cart");
