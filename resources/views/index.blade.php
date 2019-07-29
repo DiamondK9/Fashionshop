@@ -8,19 +8,60 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+{{-- LINK TO CSS REQUIRED LIST --}}
+    {{-- GOOGLE TEXT STYLE --}}
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'> 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    {{-- Boostrap CSS --}}
     <link href="{{asset('asset_admin/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('asset_admin/css/style1.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('asset_admin/css/bs.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('asset_admin/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
+    {{-- CSS STYLE --}}
     <link href="{{asset('asset_admin/css/style.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('asset_admin/css/style1.css')}}" rel="stylesheet" type="text/css"/>
+    {{-- BS CSS --}}
+    <link href="{{asset('asset_admin/css/bs.css')}}" rel="stylesheet" type="text/css"/>
+    {{-- FONT-AWSOME = ENHANCEMENT FONT CSS --}}
+    <link href="{{asset('asset_admin/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
+    {{-- IMAGE SLIDER CSS --}}
     <link href="{{asset('asset_admin/css/range-slider.css')}}" rel="stylesheet" type="text/css"/>
-    
-    <script src="{{asset('asset_admin/js/jquery-3.4.1.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}" type="text/javascript"></script>
+    {{-- CSS ANIMATION --}}
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}"> 
+    {{--  FANCYBOX CSS  --}}           
+    <link rel="stylesheet" href="{{asset('css/jquery.fancybox.css')}}"> 
+    {{--  BXSLIDER CSS  --}}           
+    <link rel="stylesheet" href="{{asset('css/jquery.bxslider.css')}}">             
+    {{--  MEAN MENU CSS  --}}          
+    <link rel="stylesheet" href="{{asset('css/meanmenu.min.css')}}">    
+    {{--  JQUERY-UI-SLIDER CSS --}}          
+    <link rel="stylesheet" href="{{asset('css/jquery-ui-slider.css')}}">
+    {{--  NIVO SLIDER CSS  --}}        
+    <link rel="stylesheet" href="{{asset('css/nivo-slider.css')}}">
+    {{--  OWL CAROUSEL CSS --}}    
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
+    {{--  OWL CAROUSEL THEME CSS --}}  
+     <link rel="stylesheet" href="{{asset('css/owl.theme.css')}}">  
+    {{--  NORMALIZE CSS --}}
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+    {{-- MAIN CSS --}}
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    {{-- RESPONSIVE CSS --}}
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    {{-- IE CSS --}}
+    <link rel="stylesheet" href="{{asset('css/ie.css')}}">
+{{-- END LINK TO CSS REQUIRED LIST --}}
+
+    {{--  MODERNIZR JS --}}
+    <script src="{{asset('js/vendor/modernizr-2.6.2.min.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('asset_admin/js/lib.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('asset_admin/js/bxslider.js')}}"></script>
+
     <script src="{{asset('asset_admin/js/range-slider.js')}}"></script>
+
     <script src="{{asset('asset_admin/js/jquery.zoom.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('asset_admin/js/bookblock.js')}}"></script>
     <script type="text/javascript" src="{{asset('asset_admin/js/custom.js')}}"></script>
     {{-- <script type="text/javascript" src="{{asset('asset_admin/social.js')}}js/"></script> --}}
@@ -28,6 +69,47 @@
     <script src="{{asset('asset_admin/js/formValidation.min2.js')}}" type="text/javascript"></script>
     <script src="{{asset('asset_admin/js/index1.js')}}" type="text/javascript"></script>
     <script src="{{asset('asset_admin/js/jquery.bpopup.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('')}}"></script>
+
+    <!-- jquery js -->
+    <script type="text/javascript" src="{{asset('asset_admin/js/jquery-3.4.1.js')}}"></script>
+    <script type="text/javascript" src="{{asset('asset_admin/js/jquery-3.4.1.min.js')}}" ></script>
+    {{-- <script src="{{asset('js/jquery-3.4.1.min.js') }}"></script> --}}
+    {{-- <script src="{{asset('js/vendor/jquery-3.4.1.min.js')}}"></script>  --}}
+    <script type="text/javascript" src="{{asset('js/jquery.bpopup.min.js')}}" ></script>
+    <!-- fancybox js -->
+    <script src="{{asset('js/jquery.fancybox.js')}}"></script>
+    
+    <!-- bxslider js -->
+    <script src="{{asset('js/jquery.bxslider.min.js')}}"></script>
+    
+    <!-- meanmenu js -->
+    <script src="{{asset('js/jquery.meanmenu.js')}}"></script>
+    
+    <!-- owl carousel js -->
+    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+    
+    <!-- nivo slider js -->
+    <script src="{{asset('js/jquery.nivo.slider.js')}}"></script>
+    
+    <!-- jqueryui js -->
+    <script src="{{asset('js/jqueryui.js')}}"></script>
+    
+    <!-- bootstrap js -->
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    
+    <!-- wow js -->
+    <script src="{{asset('js/wow.js')}}"></script>
+         
+    <script>
+        new WOW().init();
+    </script>
+    <!-- main js -->
+    <script src="{{asset('js/main.js')}}"></script>
+    
+
+
+
     <script type="text/javascript">
     $(document).ready(function() {
         // $('.social_active').hoverdir( {} );
@@ -79,10 +161,9 @@
                 </nav>
             </nav>
         </header>
-        <section id="content-holder" class="container-fluid container">
+        <section id="content-holder" class="container-fluid container" >
             <section class="row-fluid">
-                
-                <section class="span9 first">
+                <section class="span9 first" >
                     <div class="blog-sec-slider">
                         <div class="slider5" >
                             <div class="slide"><a ><img src="{{asset('asset_admin/images/2.jpg')}}" alt="" title="#htmlcaption" ></a></div>
@@ -97,13 +178,13 @@
                     </div>
                 </section>
 
-                <section class="span3">
+                <section class="span3" style="display: inline-block; float: right;">
                     <div class="side-holder">
                         <article class="banner-ad">
                             <img src="{{asset('asset_admin/images/add.jpg')}}" alt=""/>
                         </article>
                     </div>
-                    <div class="side-holder">
+                    <div class="side-holder" >
                         <article class="shop-by-list">
                             <h2>Danh mục sản phẩm</h2>
                             <div class="side-inner-holder">

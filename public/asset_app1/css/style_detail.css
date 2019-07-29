@@ -1,0 +1,38 @@
+.detail_product {
+	width: 1200px;
+	height: auto;
+	margin: auto;
+	padding-top: 5px;
+}
+.info_detail{
+	font-family: TimeNewRoman;
+	font-weight: bolder;
+
+}
+.title {
+	font-weight: bolder;
+	font-size: 20px;
+	color: black;
+	margin-top: 5px;
+}
+.cart  {
+	
+}
+.category {
+	font-family: TimeNewRoman;
+	font-size: 18px;
+	font-weight: bolder;
+	margin-top: 5px;
+}
+.category ul li > a {
+	text-decoration: none;
+}
+.category ul li:hover {
+	background-color: lightgrey;
+}
+.description {
+	font-size: 18px;
+}
+.new {
+
+}

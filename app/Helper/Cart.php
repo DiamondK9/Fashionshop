@@ -1,43 +1,44 @@
 <?php 
 namespace App\Helper;
+session_start();
 
 class Cart
 {
 	public static function getInstance() {
 		return new static();
 	}
-	public function addCart($product_id, $item) {
-		$cart = $this->getCart($product_id);
+	public function addCart($id, $item) {
+		$cart = $this->getCart($id);
 
 		if (empty($cart)) {
 			$cart = [
 				//biến $item được khởi tạo bên cart controller -> biến $cart sẽ thực hiện kiểm tra xem $cart có rỗng hay không, nếu rỗng sẽ truyền giá trị của $item vào dãy $cart của mình.
-				"product_name" => $item['product_name'],
-				"product_quantity" => $item['product_quantity'],
-				"product_id" => $item['product_id'],
-				"product_price" => $item['product_price'],
-				"product_image" => $item['product_image']
+				"name" => $item['name'],
+				"qty" => $item['qty'],
+				"id" => $item['id'],
+				"price" => $item['price'],
+				"image" => $item['image']
 			];
 		}
 		else {
-			$product_quantity = $cart['product_quantity'] + $item['product_quantity'];
-			$cart['product_quantity'] = $product_quantity;
+			$qty = $cart['qty'] + $item['qty'];
+			$cart['qty'] = $qty;
 		}
 
-		$this->setItemCart($product_id, $cart);
+		$this->setItemCart($id, $cart);
 	}
 
-	public function setItemCart($product_id, $cart) {
+	public function setItemCart($pid, $cart) {
 		if (!isset($_SESSION['cart'])) {
 			$_SESSION['cart'] = [];
 		}
 
-	$_SESSION['cart']['$product_id'] = $cart;
+	$_SESSION['cart']['$id'] = $cart;
 	}
 
-	public function getItemCart($product_id) {
-		if (isset($_SESSION['cart'][$product_id])) {
-			return $_SESSION['cart'][$product_id];
+	public function getItemCart($id) {
+		if (isset($_SESSION['cart'][$id])) {
+			return $_SESSION['cart'][$id];
 		}
 		return [];
 	}
@@ -48,9 +49,9 @@ class Cart
 		}
 		return [];
 	}
-	public function getCart($product_id) {
-		if (isset($_SESSION['cart'][$product_id])) {
-			return $_SESSION['cart'][$product_id];
+	public function getCart($id) {
+		if (isset($_SESSION['cart'][$id])) {
+			return $_SESSION['cart'][$id];
 		}
 		return[];
 	}
@@ -59,16 +60,16 @@ class Cart
 		return count($this->getAllCart());
 	} 
 
-	public function removeCart($product_id) {
-		$cart = $this->getItemCart($product_id);
+	public function removeCart($id) {
+		$cart = $this->getItemCart($id);
 		if (!empty($cart)) {
-			unset($_SESSION['cart'][$product_id]);
+			unset($_SESSION['cart'][$id]);
 			return true; 
 		}
 		return false;
 	}
-	public function updateproduct_quantity($product_id, $product_quantity) {
-		$_SESSION['cart'][$product_id]['product_quantity'] = $product_quantity;
+	public function updateQty($id, $qty) {
+		$_SESSION['cart'][$id]['qty'] = $qty;
 	
 	}
 }

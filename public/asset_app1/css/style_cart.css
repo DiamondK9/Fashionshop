@@ -1,0 +1,68 @@
+.cart {
+	font-family: TimeNewRoman;
+	font-size: 16px;
+}
+.text-center {
+	font-family: TimeNewRoman;
+	font-weight: bold;
+}
+.hidden-xs {
+	font-size: 16px;
+	font-weight: bold;
+}
+.actions {
+	display: inline;
+}
+@media screen and (max-width: 600px) { 
+table#cart tbody td .form-control { 
+width:10%; 
+display: inline !important;
+} 
+
+ 
+.actions .btn { 
+width:10%; 
+margin:1.5em 0;
+} 
+ 
+.actions .btn-info { 
+display: inline;
+ 
+/* .actions .btn-danger { 
+float:right;
+ */} 
+ 
+table#cart thead {
+display: none;
+} 
+ 
+table#cart tbody td {
+display: block;
+padding: .6rem;
+min-width:320px;
+} 
+ 
+table#cart tbody tr td:first-child {
+background: ;
+} 
+ 
+table#cart tbody td:before { 
+content: attr(data-th);
+font-weight: bold; 
+display: inline-block;
+width: 8rem;
+} 
+ 
+table#cart tfoot td {
+display:block;
+} 
+table#cart tfoot td .btn {
+display:block;
+}
+.hidden-xs {
+	width: 30%;
+}
+.title-cart{
+	width: 30%;
+}
+}

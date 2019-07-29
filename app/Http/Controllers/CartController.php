@@ -1,50 +1,51 @@
 <?php
 namespace App\Http\Controllers;
-session_start();
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Response;
 use App\Models\Product;
+use App\Models\Orders;
 use App\Helper\Cart;
 
 class CartController extends Controller
 {
-	public function cart()
-	{
-		return view('cart');
-	}
+	// public function cart()
+	// {
+	// 	return view('cart');
+	// }
 
 	public function add_cart(Request $request) {
-		$product_id = $request->post('product_id');
-		$product_quantity = $request->post('txtSoLuong');
-		$product = Product::findOrFail($product_id);
+		$id = $request->post('product_id');
+		$qty = $request->post("txtSoLuong");
+		$product = Product::findOrFail($id);
 
 		//if cart is empty then created the first product
 		//isset kiểm tra xem biến $product đã được khởi tạo trên csdl chưa, nếu được khởi tạo vậy các giá trị mang tên $product sẽ được đưa vào biến $item. trong $cart có $item và giá trị của $item là các giá trị của $product.
 		if (isset($product)) {
 			$item	= [
-				'product_name' => $product->product_name,
-				"product_id" => $product->product_id,
-				"product_image" => $product->product_image,
-				"product_price" => $product->product_price,
-				"product_quantity" => $product_quantity
+				'name' => $product->product_name,
+				"id" => $product->product_id,
+				"image" => $product->product_image,
+				"price" => $product->product_price,
+				"qty" => $qty
     		
 			];
-			Cart::getInstance()->addCart($product_id, $item);
+			Cart::getInstance()->addCart($id, $item);
+			//dd($item); die();
 			return redirect(url("cart/list"))->with("success", "Thêm giỏ hàng thành công");
 		}
 		return redirect("/");
 	}
 	public function list_cart() {
 		$carts = Cart::getInstance()->getAllCart();
-
+		//dd($carts);
 		return view('cart.list', compact('carts'));
 	}
 
 	public function remove_cart(Request $request) {
-		$product_id = $request->post('product_id');
-		$remove = Cart::getInstance()->removeCart($product_id);
+		$id = $request->post('id');
+		$remove = Cart::getInstance()->removeCart($id);
 		if ($remove) {
 			return Response()->json([
 				'status' => 1,
@@ -58,13 +59,13 @@ class CartController extends Controller
 	}
 	public function update_cart(Request $request) {
 
-		$product_id = $request->post('product_id');
-		$product_quantity = $request->post('product_quantity');
+		$id = $request->post('product_id');
+		$qty = $request->post('qty');
 
-		$cart = Cart::getInstance()->getItemCart($product_id);
+		$cart = Cart::getInstance()->getItemCart($id);
 
 		if (!empty($cart)) {
-			Cart::getInstance()->updateproduct_quantity($product_id, $product_quantity);
+			Cart::getInstance()->updateQty($id, $qty);
 			return Response()->json([
 				'status' => 1,
 				'message' => "Cập nhật thành công",

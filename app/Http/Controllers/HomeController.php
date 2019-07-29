@@ -22,6 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    //Searching Function
+    // public function getSearch(Request $request){
+    //     $product = Product::where('product_name', 'like', '%' . $request->key . '%')
+    //                             -> orwhere('product_price', $request->key)
+    //                             ->orwhere('product_type_id', $request->key)
+    //                             -> paginate(12);
+    //     //dd($product);die();
+    //     return view('home.search', compact('product'));
+
     public function index()
     {
         //gọi đến Models/Product
@@ -39,6 +49,27 @@ class HomeController extends Controller
         $related = Product::query()->limit(8)->get();
         $product = Product::findOrFail($product_id);
         return view('home.detail', ['product' => $product, "related" => $related]);
+    }
+
+     public function add_order(Request $request){
+        $carts = Cart::getInstance()->getAllCart();
+        //dd($carts);die();
+        $customer = new Customers;
+        $customer ->name = $request->name;
+        $customer ->phone = $request->phone;
+        $customer ->address = $request->address;
+        $customer ->email = $request->email;
+        $customer->save();
+        foreach ($carts as $key => $value) {
+            $order = new Orders;
+            $order ->customer_id = $customer->id;
+            $order->trees_id = $value['id'];
+            $order->quantity = $value['quantity'];
+            $order->unit_price = $value['price'];
+            $order->save();
+        }
+        return redirect()->back()->with('success', "Đặt hàng thành công");
+
     }
 
 }

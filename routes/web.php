@@ -20,11 +20,13 @@ Route::get('/', "\App\Http\Controllers\HomeController@index");
 //qui định chuỗi sau detail là slug. Khi vào trang web detail, dựa theo vị trí đường link mình vừa nhấn, tên của nó sẽ là slug và khi chuyển sang trang detail, detail của slug đó sẽ được gọi ra.
 Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name('home.detail');
 
+Route::get("add_order", "\App\Http\Controllers\HomeController@add_order")->name('add_order');
+
 //Khu vực Cart cho SP
-Route::get('/cart/list', "\App\Http\Controllers\CartController@list_cart")->name('cart.list');//edit 22/07/19
-Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
-Route::post('cart/update', "\App\Http\Controllers\CartController@update_cart");
-Route::post('cart/remove', "\App\Http\Controllers\CartController@remove_cart");
+	Route::get('/cart/list', "\App\Http\Controllers\CartController@list_cart")->name('cart.list');//edit 22/07/19
+	Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
+	Route::post('cart/update', "\App\Http\Controllers\CartController@update_cart");
+	Route::post('cart/remove', "\App\Http\Controllers\CartController@remove_cart");
 //Hết khu vực Cart cho SP
 
 
