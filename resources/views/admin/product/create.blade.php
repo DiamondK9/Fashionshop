@@ -35,34 +35,35 @@
 		</select>
 	</div>
 
-	{{-- <div class="checkbox">Kích cỡ
-		<h3>Kích cỡ</h3>
+	<div class="form-group">
+		<label>Kích cỡ</label>
 		<p>Lựa chọn kích cỡ của sản phẩm nếu có</p>
-		<form>
+
+		<div class="radio">
 			<label>
-				<input type="checkbox" name="product_size[]" value="XXS"/>XXS
+				<input type="radio" name="product_size[]" value="XXS"/>XXS
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="XS"/>XS
+				<input type="radio" name="product_size[]" value="XS"/>XS
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="S"/>S	
+				<input type="radio" name="product_size[]" value="S"/>S	
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="M"/>M
+				<input type="radio" name="product_size[]" value="M"/>M
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="L"/>L
+				<input type="radio" name="product_size[]" value="L"/>L
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="XL"/>XL
+				<input type="radio" name="product_size[]" value="XL"/>XL
 			</label>
 			<label>
-				<input type="checkbox" name="product_size[]" value="XXL"/>XXL
-			</label>	
-		</form>
+				<input type="radio" name="product_size[]" value="XXL"/>XXL
+			</label>
+		</div>
 			
-	</div> --}}
+	</div>
 	
 
 	<div class="form-group">

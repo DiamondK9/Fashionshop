@@ -51,6 +51,7 @@ class ProductController extends Controller
             // 'producer_name' => 'option',
             'product_price' => 'numeric',
             'product_quantity' => 'numeric'
+
         ];
         $request->validate($rules);
 
@@ -68,7 +69,8 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->fill($request->all());
-    
+        $product_size = implode(",", $request->get('product_size'));
+        $product->product_size = $product_size;
         $product->product_image = $product_image;
 
         $check = $product->save();

@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('content')
 
-<h3>Cập nhật thông tin sản phẩm</h3>
+<h3>Cập nhật Đơn hàng</h3>
 
 @if($errors->any())
 <div class="alert alert-danger">
@@ -14,57 +14,19 @@
 </div>
 @endif
 
-<form action="{{route('product.update', $product->product_id)}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+<form action="{{route('order.update', $orders->order_id)}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	@method("PUT")
 	@csrf
 
-	<div class="form-group">
-		<label>Tên</label>
-		<input type="text" value="{{$product->product_name}}" name="product_name" class="form-control">
-	</div>
+	<div>
+        <label for="">Trạng thái Đơn hàng</label>
+        <input type="radio" value="1" name="active">Đã hoàn thành
+        <input type="radio" value="0" name="active">Đơn mới
 
-	<div class="form-group">
-		<label>Mã Sản Phẩm</label>
-		<input type="text" value="{{$product->product_code}}" name="product_code" class="form-control">
-	</div>
-
-	<div class="form-group">
-		<label>Loại Sản Phẩm</label>
-		<select name="product_type_id">
-			@foreach($product_types as $product_type)
-				<option {{$product_type->product_type_id == $product->product_type_id ? "selected" : ''}} value="{{$product_type->product_type_id}}">{{$product_type->product_type_name}}</option>
-			@endforeach
-		</select>
-	</div>
-	
-	<div class="form-group">
-		<label>Nhà Cung cấp</label>
-		<select name="producer_id">
-			@foreach($producers as $producer)
-				<option {{$producer->producer_id == $product->producer_id ? "selected" : ''}} value="{{$producer->producer_id}}">{{$producer->producer_name}}</option>
-			@endforeach
-		</select>
-	</div>
-
-	<div class="form-group">
-		<label>Hình ảnh</label>
-		<input type="file" name="product_image" class="form-control">
-		<img src="{{asset('storage/product/' . $product->product_image)}}" width="150" alt="" />
-	</div>
-
-	<div class="form-group">
-		<label>Số lượng</label>
-		<input type="number" value="{{$product->product_quantity}}" name="product_quantity" class="form-control">
-	</div>
-
-	<div class="form-group">
-		<label>Giá</label>
-		<input type="number" value="{{$product->product_price}}" name="product_price" class="form-control">
-	</div>
-
+    </div>
 
 	<button class="btn btn-success" type="submit">Tạo mới</button>
 	<button class="btn btn-warning" type="reset">Nhập lại</button>
-	<a href="{{route('product.index')}}" class="btn btn-default">Trở lại</a>
+	<a href="{{route('order.index')}}" class="btn btn-default">Trở lại</a>
 </form>
 @endsection

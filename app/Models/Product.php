@@ -17,9 +17,16 @@ class Product extends Model
     public function producer() {
 		return $this->belongsTo(\App\Models\Producer::class,'producer_id');/*Add 06/07/2019 -> add 'producer_id' vào để khai báo producer_id là foreign_key trong bảng product, khi trả về $this = product , 1 product sẽ thuộc về 1 nhà producer duy nhất với 1 producer_id duy nhất. "Eloquent Relationship Inverse" */
 
-
 	}
 	public function product_type(){
 		return $this->belongsTo(\App\Models\ProductType::class,'product_type_id');
 	}
+
+    public function admin(){
+        return $this->belongsTo(\App\Models\Admin::class);
+    }
+
+    public function order(){
+        return $this->belongsTo(\App\Models\Orders::class);
+    }
 }

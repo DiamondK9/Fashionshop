@@ -22,19 +22,20 @@ Route::get('/detail/{slug}',"\App\Http\Controllers\HomeController@detail")->name
 
 //Khu vực Cart cho SP
 Route::get('/cart/list', "\App\Http\Controllers\CartController@list_cart")->name('cart.list');//edit 22/07/19
-
 Route::post("cart/add", "\App\Http\Controllers\CartController@add_cart");
 Route::post('cart/update', "\App\Http\Controllers\CartController@update_cart");
 Route::post('cart/remove', "\App\Http\Controllers\CartController@remove_cart");
-
 //Hết khu vực Cart cho SP
 
-Route::prefix('admin')->group(function() {
 
+
+
+
+// Trang Quản Trị
+Route::prefix('admin')->group(function() {
 	Route::middleware(['admin.guest'])->group(function() {
 		// Login Routing
 		Route::get('login', '\App\Http\Controllers\Admin\Auth\LoginController@showLoginForm');	
-
 		Route::post('login', '\App\Http\Controllers\Admin\Auth\LoginController@login');
 		//End of Login Routing
 	});
@@ -44,11 +45,9 @@ Route::prefix('admin')->group(function() {
 
 		Route::get("home", "\App\Http\Controllers\Admin\HomeController@index")->name('home.index');
 
-		Route::prefix("product")->group(function() 
-
-		{	
+//Danh mục Sản Phẩm
+		Route::prefix("product")->group(function() {	
 			Route::get('/', '\App\Http\Controllers\Admin\ProductController@index')->name('product.index');
-
 			Route::get("/create", '\App\Http\Controllers\Admin\ProductController@create')->name('product.create');
 			Route::post('', '\App\Http\Controllers\Admin\ProductController@store')->name('product.store');
 
@@ -58,7 +57,7 @@ Route::prefix('admin')->group(function() {
 
 			Route::delete('/{product}', '\App\Http\Controllers\Admin\ProductController@destroy')->name('product.delete');
 		});
-
+//Danh mục thương hiệu
 		Route::prefix("producer")->group(function() {
 			Route::get('/', '\App\Http\Controllers\Admin\ProducerController@index')->name('producer.index');
 
@@ -71,7 +70,7 @@ Route::prefix('admin')->group(function() {
 
 			Route::delete('/{producer}', '\App\Http\Controllers\Admin\ProducerController@destroy')->name('producer.delete');
 		});
-
+//Danh mục Loại Sản phẩm
 		Route::prefix("product_type")->group(function() {
 			Route::get('/', '\App\Http\Controllers\Admin\ProductTypeController@index')->name('product_type.index');
 
@@ -84,6 +83,13 @@ Route::prefix('admin')->group(function() {
 
 			Route::delete('/{product_type}', '\App\Http\Controllers\Admin\ProductTypeController@destroy')->name('product_type.delete');
 		});
+//Danh mục Đơn hàng
+		Route::prefix('order')->group(function(){
+            Route::get('/', "\App\Http\Controllers\Admin\OrderController@index")->name('order.index');
+            Route::get('/{orders}/edit', "\App\Http\Controllers\Admin\OrderController@edit")->name('order.edit');
+            Route::put('/{orders}', "\App\Http\Controllers\Admin\OrderController@update")->name('order.update');
+            Route::delete('/{orders}', "\App\Http\Controllers\Admin\OrderController@destroy")->name('order.delete');
+        });
 	});
 });
 

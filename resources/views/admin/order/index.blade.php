@@ -1,89 +1,56 @@
 @extends("admin.index")
 @section('content')
-	<a class="btn btn-primary" href="{{url('admin/product/create')}}">Tạo mới Sản phẩm</a>
+{{--  --}}
+	<h3 style="text-align: center;">Thông tin các Đơn Hàng</h3>
 	<table class="table table-striped table-hover">
 		<tr>
-			<th>ProductID</th>
-			<th>Loại Sản phẩm</th>
-			<th>Nhà cung cấp</th>
-			<th>Mã sản phẩm</th>
-			<th>Tên</th>
-			<th>Hình ảnh</th>
-			<th>Giá</th>
-			<th>Số lượng</th>
+			<th>OrderID</th>
+			<th>Customer ID</th>
+			<th>Customer Name</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>Product Name</th>
+			<th>Quantity</th>
+			<th>Total amount</th>
+			<th>Active</th>
 			<th>Sửa</th>
 			<th>Xóa</th>
 		</tr>
 
-		{{-- @if(isset($products) && !empty($products))
-			@foreach($products as $product)
-				<tr>
-				<td>{{ $product->product_product_id }}</td>
-				<td>{{ $product->product_type_product_id }}</td>
-				<td>{{ $product->producer_product_id }}</td>
-				<td>{{ $product->product_code }}</td>
-				<td>{{ $product->product_product_name }}</td>
-				<td>{{ $product->product_product_image }}</td>
-				<td>{{ number_format($product->product_product_price) }}</td>
-				<td>{{ $product->product_product_quantity }}</td>
-				<td><a href="{{ route('product.exit', $product->product_id) }}">Chỉnh sửa</a></td>
-				<td>Xóa</td>
-			</tr>
-			@endforeach	
-			@else
-				<tr>
-			    	<td colspan="10">Không dữ liệu</td>
-				</tr>
-		@endif --}}
-
-
-		{{-- @forelse($products as $product)
+		@forelse($orders as $order)
 			<tr>
-				<td>{{ $product->product_product_id }}</td>
-				<td>{{ $product->product_type_product_id }}</td>
-				<td>{{ $product->producer_product_id }}</td>
-				<td>{{ $product->product_code }}</td>
-				<td>{{ $product->product_product_name }}</td>
-				<td>{{ $product->product_product_image }}</td>
-				<td>{{ number_format($product->product_product_price) }}</td>
-				<td>{{ $product->product_product_quantity }}</td>
-				<td><a href="{{ route('product.edit', $product->product_id) }}">Chỉnh sửa</a></td>
-				<td>Xóa</td>
-			</tr>
-		@empty
-			<tr>
-		    	<td colspan="10">Không dữ liệu</td>
-			</tr>
-		@endforelse	 --}}
+				<td>{{$order->order_id}}</td>
 
-		@forelse($products as $product)
-			<tr>
-				<td>{{$product->product_id}}</td>
+				<td>{{ $order->customer_id }}</td>
 
-				<td>{{isset($product->product_type) ? $product->product_type->product_type_name : ""}}</td>
+				<td>{{$order->customer_name}}</td>
 
-				<td>{{isset($product->producer) ? $product->producer->producer_name :""}}</td>
+				<td>{{$order->customer_phone}}</td>
 
-				<td>{{$product->product_code }}</td>
+				<td>{{$order->customer_email}}</td>
 
-				<td>{{$product->product_name}}</td>
+				<td>{{$order->customer_address}}</td>
 
 				<td>
-					<img src="{{asset('../storage/app/public/product/' . $product->product_image)}}" width="150" alt="" />
+					{{ $order->product->product_name }}
 				</td>
 
-				<td>{{number_format($product->product_price)}}</td>
+				{{-- <td>{{isset($product->producer) ? $product->producer->producer_name :""}}</td> --}}
 
-				<td>{{$product->product_quantity}}</td>
-				
-				
+					
+				<td>{{number_format($order->product_quantity)}}</td>
+
+				<td>{{number_format($order->total_amount)}}</td>
+
+				<td>{{$order->active==0 ? "Đơn mới" : "Đã hoàn thành"}}</td>
 				
 				<td>
-					<a class="btn btn-success" href="{{route("product.edit", $product->product_id)}}">Chỉnh sửa</a>
+					<a class="btn btn-success" href="{{route("order.edit", $order->order_id)}}">Chỉnh sửa</a>
 				</td>
 
 				<td>
-					<button type="button" class="btn btn-danger deleteProduct" data-url="{{route('product.delete', $product->product_id)}}">Xóa</button>
+					<button type="button" class="btn btn-danger deleteOrder" data-url="{{route('order.delete', $order->order_id)}}">Xóa</button>
 				</td>
 			</tr>
 		@empty
@@ -94,12 +61,12 @@
 	</table>
 	
 	<div class="col-md-12 text-center">
-		{{$products->links()}}		
+		{{$orders->links()}}		
 	</div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.deleteProduct').click(function() {
+			$('.deleteOrder').click(function() {
 				if(!confirm("Bạn có chắc chắn xóa?")) {
 					return false;
 				}

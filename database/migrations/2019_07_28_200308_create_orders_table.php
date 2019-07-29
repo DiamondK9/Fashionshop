@@ -18,6 +18,11 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('admin_id')->unsigned()->nullable();
             $table->integer('product_id');
+            $table->integer('customer_id')->nullable();
+            $table->string('customer_name');
+            $table->string('customer_phone');
+            $table->string('customer_address');
+            $table->string('customer_email')->unique();
             $table->string('shipping_address');
             $table->integer('product_quantity')->default(0);
             $table->integer('total_amount')->default(0);

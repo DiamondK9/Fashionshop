@@ -113,7 +113,7 @@
                             <a href="?sk=tacgia"><i class="fa fa-th"></i>Tác giả</a>
                         </li> -->
                         <li>
-                            <a href="?sk=donhang"><i class="fa fa-th"></i>Đơn hàng</a>
+                            <a href="{{route('order.index')}}"><i class="fa fa-th"></i>Đơn hàng</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-th"></i>Chi tiết đơn hàng</a>
